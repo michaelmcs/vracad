@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-03-2023 a las 21:56:39
+-- Tiempo de generación: 07-03-2023 a las 15:01:34
 -- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.1
+-- Versión de PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -212,7 +211,8 @@ CREATE TABLE `member` (
 
 INSERT INTO `member` (`member_id`, `member_last`, `member_first`, `member_rank`, `member_salut`, `dept_code`, `designation_id`, `program_code`, `username`, `password`, `status`) VALUES
 (181, 'CANQUI FLORES', 'BERNABE', 'Nombrado', 'PLANTA', 'P32', 37, '', 'bernabep32', 'canquiflores', 'user'),
-(182, 'MAMANI QUISPE', 'JOSE NESTOR', 'Contratado', 'OTRA ESCU', 'P36', 37, '', 'josenestorp36', 'mamaniquispe', 'user');
+(182, 'MAMANI QUISPE', 'JOSE NESTOR', 'Contratado', 'OTRA ESCU', 'P36', 37, '', 'josenestorp36', 'mamaniquispe', 'user'),
+(1, 'admin', 'admin', 'admin', 'admin', 'admin', 1, '', 'admin', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
