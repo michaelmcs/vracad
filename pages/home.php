@@ -203,7 +203,7 @@ endif;?>
 							<label for="date">turno</label>
 							<select class="form-control select2" name="turno" required>
 								  <?php 
-									$query2=mysqli_query($con,"select * from room order by room")or die(mysqli_error($con));
+									$query2=mysqli_query($con,"select * from turno order by turno")or die(mysqli_error($con));
 									  while($row=mysqli_fetch_array($query2)){
 								  ?>
 										<option><?php echo $row['turno'];?></option>
