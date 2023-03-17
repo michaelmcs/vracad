@@ -25,18 +25,18 @@
 								<td><?php 
 								if ($member<>"")
 								{
-									$query1=mysqli_query($con,"select * from schedule inner join member where day='m' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
+									$query1=mysqli_query($con,"select * from schedule natural join member where day='m' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
 			
 								}
 								//inner join
 						
 								elseif ($room<>"")
 								{
-									$query1=mysqli_query($con,"select * from schedule inner join member where day='m' and schedule.room='$room' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
+									$query1=mysqli_query($con,"select * from schedule natural join member where day='m' and schedule.room='$room' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
 								}
 								elseif ($class<>"")
 								{
-									$query1=mysqli_query($con,"select * from schedule inner join member where day='m' and schedule.cys='$class' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
+									$query1=mysqli_query($con,"select * from schedule natural join member where day='m' and schedule.cys='$class' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
 								}
 										$row1=mysqli_fetch_array($query1);
 										$id1=$row1['sched_id'];
@@ -79,15 +79,15 @@
 								<td><?php 
 									if ($member<>"")
 								{
-									$query2=mysqli_query($con,"select * from schedule inner join member where day='w' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
+									$query2=mysqli_query($con,"select * from schedule natural join member where day='w' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
 								}
 								elseif ($room<>"")
 								{
-									$query2=mysqli_query($con,"select * from schedule inner join member where day='w' and schedule.room='$room' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
+									$query2=mysqli_query($con,"select * from schedule natural join member where day='w' and schedule.room='$room' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
 								}
 								elseif ($class<>"")
 								{
-									$query2=mysqli_query($con,"select * from schedule inner join member where day='w' and schedule.cys='$class' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
+									$query2=mysqli_query($con,"select * from schedule natural join member where day='w' and schedule.cys='$class' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
 								}
 								
 										$row1=mysqli_fetch_array($query2);

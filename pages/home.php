@@ -7,6 +7,7 @@ endif;?>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv = "content-language" content = "es">
     <title> | <?php include('../dist/includes/title.php');?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -143,34 +144,34 @@ endif;?>
 				  <div class="row">
 					 <div class="col-md-12">
 						  <div class="form-group">
-							<label for="date">Profesor</label>
-							
-								<select class="form-control select2" name="teacher" required>
-								  <?php 
-									$query2=mysqli_query($con,"select * from member order by member_last")or die(mysqli_error($con));
-									  while($row=mysqli_fetch_array($query2)){
-								  ?>
-										<option value="<?php echo $row['member_id'];?>"><?php echo $row['member_last'].", ".$row['member_first'];?></option>
-								  <?php }
-									
-								  ?>
-								</select>
-							
-						  </div><!-- /.form group -->
+								<label for="date">Profesor</label>
+								
+									<select class="form-control select2" name="teacher" required>
+									<?php 
+										$query2=mysqli_query($con,"select * from member order by member_last")or die(mysqli_error($con));
+										while($row=mysqli_fetch_array($query2)){
+									?>
+											<option value="<?php echo $row['member_id'];?>"><?php echo $row['member_last'].", ".$row['member_first'];?></option>
+									<?php }
+										
+									?>
+									</select>
+								
+						 	 </div><!-- /.form group -->
 						  <div class="form-group">
-							<label for="date">Tema</label>
-							
-								<select class="form-control select2" name="subject" required>
-								  <?php 
-									$query2=mysqli_query($con,"select * from subject order by subject_code")or die(mysqli_error($con));
-									 while($row=mysqli_fetch_array($query2)){
-								  ?>
-										<option><?php echo $row['subject_code'];?></option>
-								  <?php }
-									
-								  ?>
-								</select>
-							
+										<label for="date">Tema</label>
+										
+											<select class="form-control select2" name="subject" required>
+											<?php 
+												$query2=mysqli_query($con,"select * from subject order by subject_code")or die(mysqli_error($con));
+												while($row=mysqli_fetch_array($query2)){
+											?>
+													<option><?php echo $row['subject_code'];?></option>
+											<?php }
+												
+											?>
+											</select>
+										
 						  </div><!-- /.form group -->
 						  <div class="form-group">
 							<label for="date">Curso, Yr & Seccion</label>
@@ -198,32 +199,19 @@ endif;?>
 								  ?>
 								</select>	
 						  </div><!-- /.form group -->
-						  
-						  <div class="form-group">
-							<label for="date">turno</label>
-							<select class="form-control select2" name="turno" required>
-								  <?php 
-									$query2=mysqli_query($con,"select * from turno order by turno")or die(mysqli_error($con));
-									  while($row=mysqli_fetch_array($query2)){
-								  ?>
-										<option><?php echo $row['turno'];?></option>
-								  <?php }
-									
-								  ?>
-								</select>	
-						  </div><!-- /.form group -->
+			
 
 
 						  <div class="form-group">
 							<label for="date">Observaciones</label><br>
-								<textarea name="remarks" cols="30" placeholder="enclose remarks with parenthesis()"></textarea>
+								<textarea name="remarks" cols="30" placeholder="encierre los comentarios entre paréntesis()"></textarea>
 								
 						  </div><!-- /.form group -->
-					</div>
+						</div>
 					
 					
 
-				</div>	
+					</div>	
                
                   
                   <div class="form-group">

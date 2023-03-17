@@ -18,11 +18,60 @@
                   </li>
                   <!-- Tasks Menu -->
                   <!-- Tasks Menu -->
-                 <li class="">
-                    <!-- Menu Toggle Button -->
-                   <a href="exam.php" class="" style="font-size:14px"><i class="glyphicon glyphicon-list-alt"></i> Horario del examen</a>
+
+
+                  <li class="dropdown notifications-menu">
+                    <!-- Menu toggle button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="glyphicon glyphicon-file"></i> Programas
+                      
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <!-- Inner Menu: contains the notifications -->
+                        <ul class="menu">
+						  <li><!-- start notification -->
+                            <a href="class.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> estadistica e informatica
+                            </a>
+                          </li><!-- end notification -->
+						 
+                          <li><!-- start notification -->
+                            <a href="room.php">
+                              <i class="glyphicon glyphicon-scale text-green"></i> Habitación
+                            </a>
+                          </li><!-- end notification -->
+						
+						  <li><!-- start notification -->
+                            <a href="subject.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> Tema
+                            </a>
+                          </li><!-- end notification -->
+						  
+						            <li><!-- start notification -->
+                            <a href="teacher.php">
+                              <i class="glyphicon glyphicon-user text-green"></i>Docente
+                            </a>
+                          </li><!-- end notification -->
+                          <li><!-- start notification -->
+                            <a href="turno.php">
+                              <i class="glyphicon glyphicon-scale text-green"></i> turno
+                            </a>
+                          </li><!-- end notification -->
+
+						              <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> Firmantes
+                            </a>
+                          </li><!-- end notification -->
+
+                        </ul>
+                      </li>
+                     
+                    </ul>
                   </li>
-                  <!-- Tasks Menu -->
+
+
 				   <li class="dropdown notifications-menu">
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -57,15 +106,15 @@
                               <i class="glyphicon glyphicon-user text-green"></i>Docente
                             </a>
                           </li><!-- end notification -->
-						              <li><!-- start notification -->
-                            <a href="signatories.php">
-                              <i class="glyphicon glyphicon-user text-green"></i> Firmantes
-                            </a>
-                          </li><!-- end notification -->
-
                           <li><!-- start notification -->
                             <a href="turno.php">
                               <i class="glyphicon glyphicon-scale text-green"></i> turno
+                            </a>
+                          </li><!-- end notification -->
+
+						              <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> Firmantes
                             </a>
                           </li><!-- end notification -->
 
