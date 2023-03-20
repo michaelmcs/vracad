@@ -61,8 +61,8 @@
 											echo "<div class='show'>";	
 											echo "<ul>
 														<li class='options' style='display:$options'>
-															<span style='float:left;'><a href='sched_edit.php?id=$id1' class='edit' title='Edit'>Edit</a></span>
-																<span class='action'><a href='#' id='$id1' class='delete' title='Delete'>Remove</a></span>
+															<span style='float:left;'><a href='sched_edit.php?id=$id1' class='edit' title='Edit'>Editar</a></span>
+																<span class='action'><a href='#' id='$id1' class='delete' title='Delete'>borrar</a></span>
 														</li>";
 
 											echo "<li class='showme'>";		

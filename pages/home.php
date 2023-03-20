@@ -50,8 +50,8 @@ endif;?>
                     </a>
                   
                    <a href="#searchroom" data-target="#searchroom" data-toggle="modal" class="dropdown-toggle btn btn-warning">
-                     
-                      Habitacion				
+       
+                      Salones				
                     </a>
                     </h4>
                 </div> 
@@ -95,46 +95,49 @@ endif;?>
 		<?php }?>					  
 		</table>    
 		</div><!--col end -->
+		
+		
 		<div class="col-md-6">
-			<table class="table table-bordered table-striped">
-								<thead>
-								  <tr>
-									<th>Tiempo</th>
-									<th>T</th>
-									<th>TH</th>
-									
-								  </tr>
-								</thead>
-								
-			<?php
-					include('../dist/includes/dbcon.php');
-					$query=mysqli_query($con,"select * from time where days='tth' order by time_start")or die(mysqli_error());
-						
-					while($row=mysqli_fetch_array($query)){
-							$id=$row['time_id'];
-							$start=date("h:i a",strtotime($row['time_start']));
-							$end=date("h:i a",strtotime($row['time_end']));
-			?>
-								  <tr >
-									<td><?php echo $start."-".$end;?></td>
-									<td><input type="checkbox" name="t[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"></td>
-									<td><input type="checkbox" name="th[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"></td>
-									
-								  </tr>
-								
-			<?php }?>					  
-			</table>  
+		
 			<div class="result" id="form">
-					  </div>			
-         </div><!--col end-->           
-        </div><!--row end-->        
-					
+			<div class="form-group">
+								<label for="date">Profesor</label>
+								
+									<select class="form-control select2" name="teacher" required>
+									<?php 
+										$query2=mysqli_query($con,"select * from member order by member_last")or die(mysqli_error($con));
+										while($row=mysqli_fetch_array($query2)){
+									?>
+											<option value="<?php echo $row['member_id'];?>"><?php echo $row['member_last'].", ".$row['member_first'];?></option>
+									<?php }
+										
+									?>
+									</select>
+								
+						 	 </div><!-- /.form group -->
+
+							  <div class="form-group">
+										<label for="date">Tema</label>
+										
+											<select class="form-control select2" name="subject" required>
+											<?php 
+												$query2=mysqli_query($con,"select * from subject order by subject_code")or die(mysqli_error($con));
+												while($row=mysqli_fetch_array($query2)){
+											?>
+													<option><?php echo $row['subject_code'];?></option>
+											<?php }
+												
+											?>
+											</select>
+										
+						  </div><!-- /.form group -->
 			
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col (right) -->
-            
-            <div class="col-md-3">
+					  </div>			
+         </div><!--col end-->   
+		
+		
+		
+		 <div class="col-md-3">
               <div class="box box-warning">
                
                 <div class="box-body">
@@ -143,6 +146,8 @@ endif;?>
 					
 				  <div class="row">
 					 <div class="col-md-12">
+
+
 						  <div class="form-group">
 								<label for="date">Profesor</label>
 								
@@ -158,6 +163,10 @@ endif;?>
 									</select>
 								
 						 	 </div><!-- /.form group -->
+
+
+
+
 						  <div class="form-group">
 										<label for="date">Tema</label>
 										
@@ -173,6 +182,9 @@ endif;?>
 											</select>
 										
 						  </div><!-- /.form group -->
+
+
+
 						  <div class="form-group">
 							<label for="date">Curso, Yr & Seccion</label>
 							<select class="form-control select2" name="cys" required>
@@ -186,6 +198,23 @@ endif;?>
 								  ?>
 								</select>	
 						  </div><!-- /.form group -->
+
+
+
+						  <div class="form-group">
+							<label for="date">Salon</label>
+							<select class="form-control select2" name="room" required>
+								  <?php 
+									$query2=mysqli_query($con,"select * from room order by room")or die(mysqli_error($con));
+									  while($row=mysqli_fetch_array($query2)){
+								  ?>
+										<option><?php echo $row['room'];?></option>
+								  <?php }
+									
+								  ?>
+								</select>	
+						  </div><!-- /.form group -->
+						   
 						  <div class="form-group">
 							<label for="date">Salon</label>
 							<select class="form-control select2" name="room" required>
@@ -208,6 +237,7 @@ endif;?>
 								
 						  </div><!-- /.form group -->
 						</div>
+						
 					
 					
 
@@ -219,16 +249,133 @@ endif;?>
                       <button class="btn btn-lg btn-primary" id="daterange-btn" name="save" type="submit">
                         Guardar
                       </button>
-					  <button class="uncheck btn btn-lg btn-success" type="reset">Desmarcar todo</button>
+					  <button class="uncheck btn btn-lg btn-success" type="reset">Desmarcar</button>
+			
 					  
 					  
                    </div>
                   </div><!-- /.form group --><hr>
+				  
 				</form>	
                       
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col (right) -->
+
+			 <div class="col-md-3">
+              <div class="box box-warning">
+               
+                <div class="box-body">
+                  <!-- Date range -->
+                  <div id="form1">
+					
+				  <div class="row">
+					 <div class="col-md-12">
+
+
+						  <div class="form-group">
+								<label for="date">Profesor</label>
+								
+									<select class="form-control select2" name="teacher" required>
+									<?php 
+										$query2=mysqli_query($con,"select * from member order by member_last")or die(mysqli_error($con));
+										while($row=mysqli_fetch_array($query2)){
+									?>
+											<option value="<?php echo $row['member_id'];?>"><?php echo $row['member_last'].", ".$row['member_first'];?></option>
+									<?php }
+										
+									?>
+									</select>
+								
+						 	 </div><!-- /.form group -->
+
+
+
+
+						  <div class="form-group">
+										<label for="date">Tema</label>
+										
+											<select class="form-control select2" name="subject" required>
+											<?php 
+												$query2=mysqli_query($con,"select * from subject order by subject_code")or die(mysqli_error($con));
+												while($row=mysqli_fetch_array($query2)){
+											?>
+													<option><?php echo $row['subject_code'];?></option>
+											<?php }
+												
+											?>
+											</select>
+										
+						  </div><!-- /.form group -->
+
+
+
+						  <div class="form-group">
+							<label for="date">Curso, Yr & Seccion</label>
+							<select class="form-control select2" name="cys" required>
+								  <?php 
+									$query2=mysqli_query($con,"select * from cys order by cys")or die(mysqli_error($con));
+									 while($row=mysqli_fetch_array($query2)){
+								  ?>
+										<option><?php echo $row['cys'];?></option>
+								  <?php }
+									
+								  ?>
+								</select>	
+						  </div><!-- /.form group -->
+
+
+
+						  <div class="form-group">
+							<label for="date">Salon</label>
+							<select class="form-control select2" name="room" required>
+								  <?php 
+									$query2=mysqli_query($con,"select * from room order by room")or die(mysqli_error($con));
+									  while($row=mysqli_fetch_array($query2)){
+								  ?>
+										<option><?php echo $row['room'];?></option>
+								  <?php }
+									
+								  ?>
+								</select>	
+						  </div><!-- /.form group -->
+						   
+						  <div class="form-group">
+							<label for="date">Salon</label>
+							<select class="form-control select2" name="room" required>
+								  <?php 
+									$query2=mysqli_query($con,"select * from room order by room")or die(mysqli_error($con));
+									  while($row=mysqli_fetch_array($query2)){
+								  ?>
+										<option><?php echo $row['room'];?></option>
+								  <?php }
+									
+								  ?>
+								</select>	
+						  </div><!-- /.form group -->
+			
+
+						</div>
+					
+					
+
+					</div>	
+               
+                
+				</form>	
+                      
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col (right) -->
+		 
+        </div><!--row end-->        
+					
+			
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col (right) -->
+            
+           
 			
 			
           </div><!-- /.row -->

@@ -50,8 +50,8 @@ error_reporting(0);
                 <th>Hora de inicio</th>
                 <th>Hora de finalización</th>
                 <th>Dia/s</th>
+                <th>turno</th>
                 <th>Action</th>
-              c
                 
                 </tr>
               </thead>
@@ -64,12 +64,16 @@ error_reporting(0);
             $id=$row['time_id'];
             $start=date("h:i a",strtotime($row['time_start']));
             $end=date("h:i a",strtotime($row['time_end']));
+            
             $day=$row['days'];
+            $turno=$row['turno'];
     ?>
                 <tr>
                 <td><?php echo $start;?></td>
                 <td><?php echo $end;?></td>
-                <td><?php echo $day;?></td>               
+                
+                <td><?php echo $day;?></td> 
+                <td><?php echo $turno;?></td>              
                 <td>
                 <a id="removeme" href="time_del.php?id=<?php echo $id;?>">
                 <i class="glyphicon glyphicon-remove text-red"></i></a>
@@ -114,14 +118,26 @@ error_reporting(0);
 								<input type="time" class="form-control" name="end" placeholder="End Time" required>
 								
 						  </div><!-- /.form group -->
-						  <div class="form-group">
+						 
+              <div class="form-group">
 							<label for="date">Dia/s</label><br>
 								<select class="form-control select2" name="day" required>
-									<option value="mwf">MWF Clase</option>
-									<option value="tth">TTH Clase</option>
-									<option value="fst">Examen Sched</option>
+									<option value="mwfjv">Lunes-M-M-j-viernes</option>
+									<!-- <option value="tth">TTH Clase</option> -->
+									<!-- <option value="fst">Examen Sched</option> -->
 								</select>
 						  </div><!-- /.form group -->
+
+
+              <div class="form-group">
+							<label for="date">TURNO</label><br>
+								<select class="form-control select2" name="turno" required>
+									<option value="M">MAÑANA</option>
+									<option value="T">TARDE</option> -->
+									<!-- <option value="fst">Examen Sched</option> -->
+								</select>
+						  </div><!-- /.form group -->
+
 					</div>
 				  </div>	
                

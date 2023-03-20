@@ -7,7 +7,8 @@ endif;?>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home | <?php include('../dist/includes/title.php');?></title>
+	<meta http-equiv = "content-language" content = "es">
+    <title> | <?php include('../dist/includes/title.php');?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -24,7 +25,7 @@ endif;?>
   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
   <body class="hold-transition skin-yellow layout-top-nav" onload="myFunction()">
     <div class="wrapper">
-      <?php include('../dist/includes/header_faculty.php');?>
+      <?php include('../dist/includes/header.php');?>
       <!-- Full Width Column -->
       <div class="content-wrapper">
         <div class="container">
@@ -34,31 +35,47 @@ endif;?>
           <!-- Main content -->
           <section class="content">
             <div class="row">
-	      <div class="col-md-12">
+	      <div class="col-md-9">
               <div class="box box-warning">
-              	 
+              	<div style="text-align: center">
+              		<h4>impresión de Horario de clase 
+
+              		<a href="#searcht" data-target="#searcht" data-toggle="modal" class="dropdown-toggle btn btn-primary">
+                     
+                      Docente				
+                    </a>
+                   <a href="#searchclass" data-target="#searchclass" data-toggle="modal" class="dropdown-toggle btn btn-success">
+                     
+                      Clase				
+                    </a>
+                  
+                   <a href="#searchroom" data-target="#searchroom" data-toggle="modal" class="dropdown-toggle btn btn-warning">
+       
+                      Salones				
+                    </a>
+                    </h4>
+                </div> 
                <form method="post" id="reg-form">
                 <div class="box-body">
 				<div class="row">
 					<div class="col-md-6">
-							<table class="table table-bordered table-striped">
-							
-
+							<table class="table table-bordered table-striped" style="margin-right:-10px">
 							<thead>
 							  <tr>
-								<th class="first">Tiempo</th>
+								<th>tiempo</th>
+								<th>L</th>
 								<th>M</th>
-								<th>W</th>
-								<th>F</th>
+								<th>M</th>
+								<th>J</th>
+								<th>V</th>
+
 								
 							  </tr>
 							</thead>
 							
 		<?php
 				include('../dist/includes/dbcon.php');
-				$member=$_SESSION['id'];
-				$sid=$_SESSION['settings'];
-				$query=mysqli_query($con,"select * from time where days='mwf' order by time_start")or die(mysqli_error());
+				$query=mysqli_query($con,"select * from time where days='mwfjv' order by time_start")or die(mysqli_error());
 					
 				while($row=mysqli_fetch_array($query)){
 						$id=$row['time_id'];
@@ -66,153 +83,23 @@ endif;?>
 						$end=date("h:i a",strtotime($row['time_end']));
 		?>
 							  <tr >
-								<td class="first"><?php echo $start."-".$end;?></td>
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='m' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
-
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='w' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
-
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='f' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
-
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='j' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
-
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='v' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
-
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
+								<td><?php echo $start."-".$end;?></td>
+								<td><input type="checkbox" id="check" name="m[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"></td>
+								<td><input type="checkbox" id="check" name="w[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"></td>
+								<td><input type="checkbox" id="check" name="f[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"></td>
+								<td><input type="checkbox" id="check" name="j[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"></td>
+								<td><input type="checkbox" id="check" name="v[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"></td>
 								
 							  </tr>
 							
 		<?php }?>					  
 		</table>    
-		</div>
+		</div><!--col end -->
 		<div class="col-md-6">
 			<table class="table table-bordered table-striped">
 								<thead>
 								  <tr>
-									<th class="first">Time</th>
+									<th>Tiempo</th>
 									<th>T</th>
 									<th>TH</th>
 									
@@ -220,7 +107,7 @@ endif;?>
 								</thead>
 								
 			<?php
-					
+					include('../dist/includes/dbcon.php');
 					$query=mysqli_query($con,"select * from time where days='tth' order by time_start")or die(mysqli_error());
 						
 					while($row=mysqli_fetch_array($query)){
@@ -229,72 +116,16 @@ endif;?>
 							$end=date("h:i a",strtotime($row['time_end']));
 			?>
 								  <tr >
-								<td class="first"><?php echo $start."-".$end;?></td>
+									<td><?php echo $start."-".$end;?></td>
+									<td><input type="checkbox" name="t[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"></td>
+									<td><input type="checkbox" name="th[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"></td>
+									
+								  </tr>
 								
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='t' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
-
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='th' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
-
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
-								
-								
-							  </tr>
-								
-			<?php }?>			
-							 <tr>
-							 	<td><a href="faculty_class_sched.php?id=<?php echo $member;?>" class="btn btn-primary">impresión de Horario de clase  
-</a></td>	
-							 </tr>			  
-			</table> 			
+			<?php }?>					  
+			</table>  
+			<div class="result" id="form">
+					  </div>			
          </div><!--col end-->           
         </div><!--row end-->        
 					
@@ -303,7 +134,101 @@ endif;?>
               </div><!-- /.box -->
             </div><!-- /.col (right) -->
             
-           
+            <div class="col-md-3">
+              <div class="box box-warning">
+               
+                <div class="box-body">
+                  <!-- Date range -->
+                  <div id="form1">
+					
+				  <div class="row">
+					 <div class="col-md-12">
+						  <div class="form-group">
+								<label for="date">Profesor</label>
+								
+									<select class="form-control select2" name="teacher" required>
+									<?php 
+										$query2=mysqli_query($con,"select * from member order by member_last")or die(mysqli_error($con));
+										while($row=mysqli_fetch_array($query2)){
+									?>
+											<option value="<?php echo $row['member_id'];?>"><?php echo $row['member_last'].", ".$row['member_first'];?></option>
+									<?php }
+										
+									?>
+									</select>
+								
+						 	 </div><!-- /.form group -->
+						  <div class="form-group">
+										<label for="date">Tema</label>
+										
+											<select class="form-control select2" name="subject" required>
+											<?php 
+												$query2=mysqli_query($con,"select * from subject order by subject_code")or die(mysqli_error($con));
+												while($row=mysqli_fetch_array($query2)){
+											?>
+													<option><?php echo $row['subject_code'];?></option>
+											<?php }
+												
+											?>
+											</select>
+										
+						  </div><!-- /.form group -->
+						  <div class="form-group">
+							<label for="date">Curso, Yr & Seccion</label>
+							<select class="form-control select2" name="cys" required>
+								  <?php 
+									$query2=mysqli_query($con,"select * from cys order by cys")or die(mysqli_error($con));
+									 while($row=mysqli_fetch_array($query2)){
+								  ?>
+										<option><?php echo $row['cys'];?></option>
+								  <?php }
+									
+								  ?>
+								</select>	
+						  </div><!-- /.form group -->
+						  <div class="form-group">
+							<label for="date">Salon</label>
+							<select class="form-control select2" name="room" required>
+								  <?php 
+									$query2=mysqli_query($con,"select * from room order by room")or die(mysqli_error($con));
+									  while($row=mysqli_fetch_array($query2)){
+								  ?>
+										<option><?php echo $row['room'];?></option>
+								  <?php }
+									
+								  ?>
+								</select>	
+						  </div><!-- /.form group -->
+			
+
+
+						  <div class="form-group">
+							<label for="date">Observaciones</label><br>
+								<textarea name="remarks" cols="30" placeholder="encierre los comentarios entre paréntesis()"></textarea>
+								
+						  </div><!-- /.form group -->
+						</div>
+					
+					
+
+					</div>	
+               
+                  
+                  <div class="form-group">
+                    
+                      <button class="btn btn-lg btn-primary" id="daterange-btn" name="save" type="submit">
+                        Guardar
+                      </button>
+					  <button class="uncheck btn btn-lg btn-success" type="reset">Desmarcar todo</button>
+					  
+					  
+                   </div>
+                  </div><!-- /.form group --><hr>
+				</form>	
+                      
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col (right) -->
 			
 			
           </div><!-- /.row -->
@@ -314,9 +239,145 @@ endif;?>
       </div><!-- /.content-wrapper -->
       <?php include('../dist/includes/footer.php');?>
     </div><!-- ./wrapper -->
-	
+	<div id="searcht" class="modal fade in" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog">
+	  <div class="modal-content" style="height:auto">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Busqueda de Horario de la Facultad</h4>
+              </div>
+              <div class="modal-body">
+			  <form class="form-horizontal" method="post" action="faculty_sched.php" target="_blank">
+                
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="name">Facultad</label>
+					<div class="col-lg-10">
+					<select class="select2" name="faculty" style="width:90%!important" required>
+								  <?php 
+								  
+									$query2=mysqli_query($con,"select * from member order by member_last")or die(mysqli_error($con));
+									  while($row=mysqli_fetch_array($query2)){
+								  ?>
+										<option value="<?php echo $row['member_id'];?>"><?php echo $row['member_last'].", ".$row['member_first'];?></option>
+								  <?php }
+									
+								  ?>
+								</select>
+					</div>
+				</div> 
+				
+				
+              </div><hr>
+              <div class="modal-footer">
+				<button type="submit" name="search" class="btn btn-primary">Mostrar horario</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+			  </form>
+            </div>
+			
+        </div><!--end of modal-dialog-->
  </div>
+ <!--end of modal--> 
  
+ <div id="searchclass" class="modal fade in" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog">
+	  <div class="modal-content" style="height:auto">
+              <div class="modal-header">
+                <button type="button" class="close" data-diHorario de clasesmiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Busqueda de horario de clase</h4>
+              </div>
+              <div class="modal-body">
+			  <form class="form-horizontal" method="post" action="class_sched.php" target="_blank">
+                
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="name">Clase</label>
+					<div class="col-lg-10">
+					<select class="select2" name="class" style="width:90%!important" required>
+								  <?php 
+								  
+									$query2=mysqli_query($con,"select * from cys order by cys")or die(mysqli_error($con));
+									  while($row=mysqli_fetch_array($query2)){
+								  ?>
+										<option><?php echo $row['cys'];?></option>
+								  <?php }
+									
+								  ?>
+								</select>
+					</div>
+				</div> 
+				
+				
+              </div><hr>
+              <div class="modal-footer">
+				<button type="submit" name="search" class="btn btn-primary">Mostrar horario</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+			  </form>
+            </div>
+			
+        </div><!--end of modal-dialog-->
+ </div>
+ <!--end of modal--> 
+ 
+ <div id="searchroom" class="modal fade in" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog">
+	  <div class="modal-content" style="height:auto">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Buscar horario de Clases</h4>
+              </div>
+              <div class="modal-body">
+			  <form class="form-horizontal" method="post" action="room_sched.php" target="_blank">
+                
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="name">Salon</label>
+					<div class="col-lg-10">
+					<select class="select2" name="room" style="width:90%!important" required>
+								  <?php 
+								  
+									$query2=mysqli_query($con,"select * from room order by room")or die(mysqli_error($con));
+									  while($row=mysqli_fetch_array($query2)){
+								  ?>
+										<option><?php echo $row['room'];?></option>
+								  <?php }
+									
+								  ?>
+								</select>
+					</div>
+				</div> 
+				
+				
+              </div><hr>
+              <div class="modal-footer">
+				<button type="submit" name="search" class="btn btn-primary">Mostrar horario</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+			  </form>
+            </div>
+			
+        </div><!--end of modal-dialog-->
+ </div>
+ <!--end of modal--> 
+	<script type="text/javascript">
+	
+		$(document).on('submit', '#reg-form', function()
+		 {  
+		  $.post('submit.php', $(this).serialize(), function(data)
+		  {
+		   $(".result").html(data);  
+		   $("#form1")[0].reset();
+		  // $("#check").reset();
+
+		  });
+		  
+		  return false;
+		  
+		
+		})
+</script>
 <script>
 $(".uncheck").click(function () {
 			$('input:checkbox').removeAttr('checked');
@@ -341,24 +402,12 @@ $(".uncheck").click(function () {
     <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
     
-    <script>
-      $(function () {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false
-        });
-      });
-    </script>
+  
      <script>
       $(function () {
         //Initialize Select2 Elements
         $(".select2").select2();
-
+       
         //Datemask dd/mm/yyyy
         $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
         //Datemask2 mm/dd/yyyy

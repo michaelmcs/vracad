@@ -22,9 +22,9 @@
 
                   <li class="dropdown notifications-menu">
                     <!-- Menu toggle button -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <i class="glyphicon glyphicon-file"></i> Programas
-                      
+             
+                      <a href="#" style="color:#fff;" class="dropdown-toggle" data-toggle="dropdown" >
+                      <i class="glyphicon glyphicon-th text-red"></i> Programas
                     </a>
                     <ul class="dropdown-menu">
                       <li>
@@ -32,38 +32,279 @@
                         <ul class="menu">
 						  <li><!-- start notification -->
                             <a href="class.php">
-                              <i class="glyphicon glyphicon-user text-green"></i> estadistica e informatica
+                              <i class="glyphicon glyphicon-user text-green"></i> ADMINISTRACION
                             </a>
                           </li><!-- end notification -->
 						 
                           <li><!-- start notification -->
                             <a href="room.php">
-                              <i class="glyphicon glyphicon-scale text-green"></i> Habitación
+                              <i class="glyphicon glyphicon-user text-green"></i> ANTROPOLOGIA
                             </a>
                           </li><!-- end notification -->
 						
-						  <li><!-- start notification -->
+						             <li><!-- start notification -->
                             <a href="subject.php">
-                              <i class="glyphicon glyphicon-user text-green"></i> Tema
+                              <i class="glyphicon glyphicon-user text-green"></i> ARQUITECTURA Y URBANISMO
                             </a>
                           </li><!-- end notification -->
 						  
 						            <li><!-- start notification -->
                             <a href="teacher.php">
-                              <i class="glyphicon glyphicon-user text-green"></i>Docente
+                              <i class="glyphicon glyphicon-user text-green"></i> ARTE: ARTES PLASTICAS
                             </a>
                           </li><!-- end notification -->
                           <li><!-- start notification -->
                             <a href="turno.php">
-                              <i class="glyphicon glyphicon-scale text-green"></i> turno
+                              <i class="glyphicon glyphicon-user text-green"></i> ARTE: DANZA
                             </a>
                           </li><!-- end notification -->
 
 						              <li><!-- start notification -->
                             <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> ARTE: MUSICA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> ARTE: TEATRO
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> BIOLOGÍA: PESQUERÍA
+                            </a>
+                          </li><!-- end notification -->
+
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> BIOLOGÍA: MICROBIOLOGÍA Y LABORATORIO CLÍNICO
+                            </a>
+                          </li><!-- end notification -->
+
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> BIOLOGÍA: ECOLOGÍA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> CIENCIAS CONTABLES
+                            </a>
+                          </li><!-- end notification -->
+                          
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
                               <i class="glyphicon glyphicon-user text-green"></i> Firmantes
                             </a>
                           </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> Firmantes
+                            </a>
+                          </li><!-- end notification -->
+                          
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> CIENCIAS DE LA COMUNICACION SOCIAL
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> CIENCIAS FÍSICO MATEMATICAS: FÍSICA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> CIENCIAS FÍSICO MATEMATICAS: MATEMATICAS
+                          </li><!-- end notification -->
+
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> DERECHO
+                            </a>
+                          </li><!-- end notification -->
+
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> EDUCACIÓN FÍSICA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> EDUCACIÓN INICIAL
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> EDUCACIÓN PRIMARIA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> EDUCACIÓN SECUNDARIA DE LA ESPECIALIDAD DE CIENCIAS SOCIALES
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> EDUCACIÓN SECUNDARIA DE LA ESPECIALIDAD DE CIENCIA, TECNOLOGIÁ Y AMBIENTE
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> EDUCACIÓN SECUNDARIA DE LA ESPECIALIDAD DE MATEMÁTICA, FISICA, COMPUTACIÓN E INFORMÁTICA
+                            </a>
+                          </li><!-- end notification -->
+
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> ENFERMERIA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERÍA AGRÍCOLA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERIA AGROINDUSTRIAL
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERIA AGRINOMICA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERÍA CIVIL
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERIA DE MINAS
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERÍA DE SISTEMAS
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERIA ECONOMICA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERÍA ELECTRÓNICA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERÍA ESTADÍSTICA E INFORMÁTICA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERÍA GEOLÓGIA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERÍA MECÁCANICA ELECTRICA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERÍA METALÚRGICA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERÍA QUÍMICA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> INGENIERIA TOPOGRAFICA Y AGRIMINSURA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> MEDICINA HUMANA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> MEDICINA VETERINARIA Y ZOOTECNIA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> NUTRICIÓN HUMANA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> ODONTOLOGÍA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> SOCIOLOGIA
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> TRABAJO SOCIAL
+                            </a>
+                          </li><!-- end notification -->
+
+                          <li><!-- start notification -->
+                            <a href="signatories.php">
+                              <i class="glyphicon glyphicon-user text-green"></i> TURISMO
+                            </a>
+                          </li><!-- end notification -->
+
 
                         </ul>
                       </li>
@@ -91,7 +332,7 @@
 						 
                           <li><!-- start notification -->
                             <a href="room.php">
-                              <i class="glyphicon glyphicon-scale text-green"></i> Habitación
+                              <i class="glyphicon glyphicon-scale text-green"></i> Salon
                             </a>
                           </li><!-- end notification -->
 						

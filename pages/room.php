@@ -9,7 +9,7 @@ error_reporting(0);
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Room | <?php include('../dist/includes/title.php');?></title>
+    <title>salon <?php include('../dist/includes/title.php');?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -62,7 +62,7 @@ error_reporting(0);
             $room=$row['room'];
     ?>
                 <tr>
-                <td>Room <?php echo $room;?></td>
+                <td>salon <?php echo $room;?></td>
                  
                 <td><a id="click" href="room.php?id=<?php echo $id;?>&room=<?php echo $room;?>">
                 <i class="glyphicon glyphicon-edit text-blue"></i></a>
@@ -99,8 +99,8 @@ error_reporting(0);
 					 <div class="col-md-12">
 						  
 						  <div class="form-group">
-							<label for="date">Agregar Habitacion</label><br>
-								<input type="text" class="form-control" name="room" placeholder="Room" required>
+							<label for="date">Agregar Salon</label><br>
+								<input type="text" class="form-control" name="room" placeholder="Salon" required>
 								
 						  </div><!-- /.form group -->
 					</div>
@@ -129,9 +129,9 @@ error_reporting(0);
 					 <div class="col-md-12">
 						  <form method="post" action="room_update.php">
 						  <div class="form-group">
-							<label for="date">Actualizar habitacion</label><br>
+							<label for="date">Actualizar Salon</label><br>
 								<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $_REQUEST['id'];?>" placeholder="Room ID" readonly>
-								<input type="text" class="form-control" id="class" name="room" value="<?php echo $_REQUEST['room'];?>" placeholder="Room" required>
+								<input type="text" class="form-control" id="class" name="room" value="<?php echo $_REQUEST['room'];?>" placeholder="Salon" required>
 						  </div><!-- /.form group -->
 					</div>
 				  </div>	

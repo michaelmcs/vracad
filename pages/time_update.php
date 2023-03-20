@@ -11,8 +11,9 @@ include('../dist/includes/dbcon.php');
 	$start =$_POST['start'];
 	$end =$_POST['end'];
 	$day =$_POST['day'];
+	$turno =$_POST['turno'];
 	
-	mysqli_query($con,"update time set time_start='$start',time_end='$end',days='$day' where time_id='$id'")or die(mysqli_error());
+	mysqli_query($con,"update time set time_start='$start',time_end='$end',days='$day' ,turno='$turno' where time_id='$id'")or die(mysqli_error());
 	
 	echo "<script type='text/javascript'>alert('Tiempo actualizado con éxito!');</script>";	
 			echo "<script>document.location='time.php'</script>";  

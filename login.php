@@ -18,14 +18,17 @@ $pass = mysqli_real_escape_string($con,$pass_unsafe);
 $salt="a1Bz20ydqelm8m1wql";
 $pass=$salt.$pass;*/
 
-$query=mysqli_query($con,"select * from member where username='$user' and password='$pass'")or die(mysqli_error($con));
+// $query=mysqli_query($con,"select * from member where username='$user' and password='$pass'")or die(mysqli_error($con));
+$query=mysqli_query($con,"select * from program where username='$user' and password='$pass'")or die(mysqli_error($con));
 	$row=mysqli_fetch_array($query);
            
-           $name=$row['member_salut']." ".$row['member_first']." ".$row['member_last'];
+		   $name=$row['prog_title'];
+		//    $name=$row['member_last'];
            $counter=mysqli_num_rows($query);
-           $id=$row['member_id'];
+        //    $id=$row['member_id'];
+		   $id=$row['prog_id'];
            $status=$row['status'];
-	  	if ($counter == 0) 
+	if ($counter == 0) 
 		  {	
 		  echo "<script type='text/javascript'>alert('Invalid Username or Password!');
 		  document.location='index.php'</script>";

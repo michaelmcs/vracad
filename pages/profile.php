@@ -34,7 +34,7 @@ endif;?>
           <!-- Content Header (Page header) -->
           <section class="content-header">
             <h1>
-              <a class="btn btn-lg btn-warning" href="home.php">aTRAS</a>
+              <a class="btn btn-lg btn-warning" href="home.php">ATRAS</a>
               
             </h1>
             <ol class="breadcrumb">
@@ -44,7 +44,7 @@ endif;?>
           </section>
 <?php
 		    $id=$_SESSION['id'];
-		      $query=mysqli_query($con,"select * from member where member_id='$id'")or die(mysqli_error());
+		      $query=mysqli_query($con,"select * from program where prog_id='$id'")or die(mysqli_error());
 				$row=mysqli_fetch_array($query);
 		  ?>	
           <!-- Main content -->
@@ -58,37 +58,31 @@ endif;?>
                 <div class="box-body">
                   <!-- Date range -->
                   <form method="post" action="profile_update.php">
-  
-                  <div class="form-group">
-                    <label for="date">Nombre completo</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" value="<?php echo $row['member_first']." ".$row['member_last'];?>" name="name" placeholder="Full Name" required readonly>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
+
 				  <div class="form-group">
                     <label for="date">Nombre de usuario</label>
                     <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" value="<?php echo $row['username'];?>" name="username" placeholder="Username" required>
+                      <input type="text" class="form-control pull-right" value="<?php echo $row['username'];?>" name="username" placeholder="usuario" required>
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
 				  <div class="form-group">
                     <label for="date">Cambiar password</label>
                     <div class="input-group col-md-12">
-                      <input type="password" class="form-control pull-right" id="date" name="password" placeholder="Type new password">
+                      <input type="password" class="form-control pull-right" id="date" name="password" placeholder="Escribie la nueva contraseña">
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
 				
           <div class="form-group">
                     <label for="date">Confirmar nuevo Password</label>
                     <div class="input-group col-md-12">
-                      <input type="password" class="form-control pull-right" id="date" name="new" placeholder="Type new password">
+                      <input type="password" class="form-control pull-right" id="date" name="new" placeholder="Escribie la nueva contraseña">
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
           <hr>
 					<div class="form-group">
                     <label for="date">Ingrese la contraseña anterior para confirmar los cambios</label>
                     <div class="input-group col-md-12">
-                      <input type="password" class="form-control pull-right" id="date" name="passwordold" placeholder="Type old password" required>
+                      <input type="password" class="form-control pull-right" id="date" name="passwordold" placeholder="Escriba la antigua contraseña" required>
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
 				  

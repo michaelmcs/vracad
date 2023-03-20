@@ -20,7 +20,7 @@ endif;
 	
  echo '<meta http-equiv="refresh" content="2;url=../index.php">';
  echo'<progress max=100><strong>Progress: 60% done. </strong></progress><br>';
- echo'<span class="itext">Logging out please wait!...</span>';
+ echo'<span class="itext">cerrando sesión Del Sistema de carga academica</span>';
 ?>
 </div>
 </body>

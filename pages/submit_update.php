@@ -263,7 +263,7 @@ include('../dist/includes/dbcon.php');
 					<td>miercoles</td>
 					<td>$timec</td> 
 					<td>$cysc</td>
-					<td class='text-danger'><b>Not Available</b>	</td>					
+					<td class='text-danger'><b>no esta disponible</b>	</td>					
 				</tr>
 			</table></span>";	
 		
