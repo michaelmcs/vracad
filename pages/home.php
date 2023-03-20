@@ -117,19 +117,17 @@ endif;?>
 						 	 </div><!-- /.form group -->
 
 							  <div class="form-group">
-										<label for="date">Tema</label>
-										
-											<select class="form-control select2" name="subject" required>
-											<?php 
-												$query2=mysqli_query($con,"select * from subject order by subject_code")or die(mysqli_error($con));
-												while($row=mysqli_fetch_array($query2)){
-											?>
-													<option><?php echo $row['subject_code'];?></option>
-											<?php }
-												
-											?>
-											</select>
-										
+							<label for="date">Curso</label>
+							<select class="form-control select2" name="cys" required>
+								  <?php 
+									$query2=mysqli_query($con,"select * from cys order by cys")or die(mysqli_error($con));
+									 while($row=mysqli_fetch_array($query2)){
+								  ?>
+										<option><?php echo $row['cys'];?></option>
+								  <?php }
+									
+								  ?>
+								</select>	
 						  </div><!-- /.form group -->
 			
 					  </div>			
