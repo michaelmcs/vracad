@@ -48,7 +48,8 @@ endif;
 						<table id="example1" class="table table-bordered table-striped" style="margin-right:-10px">
               <thead>
                 <tr>
-                <th>Clase</th>
+                <th>N°</th>
+                <th>Semestre</th>
                 <th>Accion</th>
                 
                 
@@ -57,13 +58,14 @@ endif;
               
     <?php
         include('../dist/includes/dbcon.php');
-        $query=mysqli_query($con,"select * from cys order by cys")or die(mysqli_error());
+        $query=mysqli_query($con,"select * from cys  order BY  cys_id")or die(mysqli_error());
           
           while($row=mysqli_fetch_array($query)){
             $id=$row['cys_id'];
             $cys=$row['cys'];
     ?>
                 <tr>
+                <td><?php echo $id;?></td>
                 <td><?php echo $cys;?></td>
                  
                 <td><a id="click" href="class.php?id=<?php echo $id;?>&cys=<?php echo $cys;?>">

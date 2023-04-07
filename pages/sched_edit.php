@@ -110,38 +110,9 @@ endif;?>
 							
 		<?php }?>					  
 		</table>    
-		</div><!--col end -->
-		<div class="col-md-6">
-			<table class="table table-bordered table-striped">
-								<thead>
-								  <tr>
-									<th>Tiempo</th>
-									<th>T</th>
-									<th>TH</th>
-									
-								  </tr>
-								</thead>
-								
-			<?php
-					include('../dist/includes/dbcon.php');
-					$query=mysqli_query($con,"select * from time where days='tth' order by time_start")or die(mysqli_error());
-						
-					while($row=mysqli_fetch_array($query)){
-							$id=$row['time_id'];
-							$start=date("h:i a",strtotime($row['time_start']));
-							$end=date("h:i a",strtotime($row['time_end']));
-			?>
-								  <tr >
-									<td><?php echo $start."-".$end;?></td>
-									<td><input type="checkbox" name="t[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"
-									<?php if(($id==$time_id) and ($day=='t')) echo "checked"; ?>></td>
-									<td><input type="checkbox" name="th[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"
-									<?php if(($id==$time_id) and ($day=='th')) echo "checked"; ?>></td>
-									
-								  </tr>
-								
-			<?php }?>					  
-			</table>  
+
+
+		
 			<div class="result" id="form">
 					  </div>			
          </div><!--col end-->           

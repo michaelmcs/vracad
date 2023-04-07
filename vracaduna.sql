@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2023 a las 13:33:10
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 7.4.27
+-- Tiempo de generación: 05-04-2023 a las 21:36:52
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `area`
+--
+
+CREATE TABLE `area` (
+  `area_id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `area`
+--
+
+INSERT INTO `area` (`area_id`, `nombre`) VALUES
+(1, 'ESTUDIOS DE ESPECIALIDAD'),
+(2, 'ESTUDIOS GENERALES'),
+(3, 'ESTUDIOS ESPECIFICOS');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `cys`
 --
 
@@ -37,9 +57,20 @@ CREATE TABLE `cys` (
 --
 
 INSERT INTO `cys` (`cys_id`, `cys`) VALUES
-(11, 'I'),
-(14, 'COMPRENSIÓN Y ARGUME'),
-(13, '2');
+(1, 'I'),
+(3, 'III'),
+(2, 'II'),
+(4, 'IV'),
+(5, 'V'),
+(6, 'VI'),
+(7, 'VII'),
+(8, 'VIII'),
+(9, 'IX'),
+(10, 'X'),
+(11, 'XI'),
+(12, 'XII'),
+(13, 'XIII'),
+(14, 'XIV');
 
 -- --------------------------------------------------------
 
@@ -64,7 +95,7 @@ INSERT INTO `dept` (`dept_id`, `dept_code`, `dept_name`) VALUES
 (13, 'P39', 'MEDICINA VETERINARIA Y ZOOTECNIA'),
 (14, 'P30', 'INGENIERIA ECONOMICA'),
 (15, 'P11', 'CIENCIAS CONTABLES'),
-(16, 'P01', 'ADMINISTRACION'),
+(53, 'P01', 'ADMINISTRACION'),
 (17, 'P23', 'ENFERMERIA'),
 (18, 'P43', 'TRABAJO SOCIAL'),
 (19, 'P28', 'INGENIERIA DE MINAS'),
@@ -186,6 +217,27 @@ CREATE TABLE `exam_sched` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `grupo`
+--
+
+CREATE TABLE `grupo` (
+  `sec_id` int(11) NOT NULL,
+  `sec` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `grupo`
+--
+
+INSERT INTO `grupo` (`sec_id`, `sec`) VALUES
+(2, 'A'),
+(3, 'B'),
+(4, 'C'),
+(5, 'D');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `member`
 --
 
@@ -195,21 +247,39 @@ CREATE TABLE `member` (
   `member_first` varchar(30) NOT NULL,
   `member_rank` varchar(50) NOT NULL,
   `member_salut` varchar(30) NOT NULL,
-  `dept_code` varchar(10) NOT NULL,
-  `designation_id` int(11) NOT NULL,
-  `program_code` varchar(10) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `status` varchar(10) NOT NULL
+  `dept_name` varchar(10) NOT NULL,
+  `designation_id` varchar(50) NOT NULL,
+  `prog_code_add` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `member`
 --
 
-INSERT INTO `member` (`member_id`, `member_last`, `member_first`, `member_rank`, `member_salut`, `dept_code`, `designation_id`, `program_code`, `username`, `password`, `status`) VALUES
-(181, 'CANQUI FLORES', 'BERNABE', 'Nombrado', 'PLANTA', 'P32', 37, '', 'bernabep32', 'canquiflores', 'user'),
-(182, 'MAMANI QUISPE', 'JOSE NESTOR', 'Contratado', 'OTRA ESCU', 'P36', 37, '', 'josenestorp36', 'mamaniquispe', 'user');
+INSERT INTO `member` (`member_id`, `member_last`, `member_first`, `member_rank`, `member_salut`, `dept_name`, `designation_id`, `prog_code_add`) VALUES
+(195, 'FLORES VELASQUEZ', 'EDELFRE', 'NOMBRADO PRINCIPAL', 'PLANTA', 'P29', '', '28'),
+(196, 'SOSA MAIDANA', 'CARLOS BORIS', 'NOMBRADO PRINCIPAL', 'PLANTA', 'P29', '', '28'),
+(197, 'ARCAYA COAQUIRA', 'WILLIAM EUCEVIO', 'NOMBRADO PRINCIPAL', 'PLANTA', 'P29', '', '28'),
+(198, 'CONDORI ALEJO', 'HENRY IVAN', 'NOMBRADO PRINCIPAL', 'PLANTA', 'P29', '', '28');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `plan_e`
+--
+
+CREATE TABLE `plan_e` (
+  `plan_id` int(11) NOT NULL,
+  `name_plan` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `plan_e`
+--
+
+INSERT INTO `plan_e` (`plan_id`, `name_plan`) VALUES
+(1, 'Plan 6'),
+(2, 'Plan 7');
 
 -- --------------------------------------------------------
 
@@ -292,8 +362,10 @@ CREATE TABLE `rank` (
 --
 
 INSERT INTO `rank` (`rank_id`, `rank`) VALUES
-(1, 'Nombrado'),
-(2, 'Contratado');
+(1, 'NOMBRADO ASOCIADO'),
+(2, 'NOMBRADO PRINCIPAL'),
+(3, 'NOMBRADO AUXILIAR'),
+(4, 'CONTRATADO');
 
 -- --------------------------------------------------------
 
@@ -303,16 +375,20 @@ INSERT INTO `rank` (`rank_id`, `rank`) VALUES
 
 CREATE TABLE `room` (
   `room_id` int(11) NOT NULL,
-  `room` varchar(15) NOT NULL
+  `room` varchar(15) NOT NULL,
+  `prog_code` varchar(50) NOT NULL,
+  `prog_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `room`
 --
 
-INSERT INTO `room` (`room_id`, `room`) VALUES
-(1, '101'),
-(6, '102 Pab Ant');
+INSERT INTO `room` (`room_id`, `room`, `prog_code`, `prog_id`) VALUES
+(39, '110', '43', 43),
+(38, '105', '43', 43),
+(37, '108', '28', 28),
+(36, '105', '28', 28);
 
 -- --------------------------------------------------------
 
@@ -330,8 +406,7 @@ CREATE TABLE `salut` (
 --
 
 INSERT INTO `salut` (`salut_id`, `salut`) VALUES
-(1, 'PLANTA'),
-(2, ' OTRA ESC');
+(1, 'PLANTA');
 
 -- --------------------------------------------------------
 
@@ -349,31 +424,16 @@ CREATE TABLE `schedule` (
   `room` varchar(15) NOT NULL,
   `remarks` varchar(50) NOT NULL,
   `settings_id` int(11) NOT NULL,
-  `encoded_by` varchar(10) NOT NULL
+  `encoded_by` varchar(10) NOT NULL,
+  `alum` int(11) NOT NULL,
+  `hteo` int(11) NOT NULL,
+  `hprac` int(11) NOT NULL,
+  `th` int(11) NOT NULL,
+  `cr` int(11) NOT NULL,
+  `sec` varchar(50) NOT NULL,
+  `designation` varchar(150) NOT NULL,
+  `prog_code` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `schedule`
---
-
-INSERT INTO `schedule` (`sched_id`, `time_id`, `day`, `member_id`, `subject_code`, `cys`, `room`, `remarks`, `settings_id`, `encoded_by`) VALUES
-(49, 15, 'm', 181, 'ed', '2', '101', '', 1, '44'),
-(48, 14, 'm', 181, 'ed', '2', '101', '', 1, '44'),
-(47, 7, 'j', 182, 'ed', 'I', '101', '', 1, '44'),
-(46, 6, 'j', 182, 'ed', 'I', '101', '', 1, '44'),
-(45, 5, 'j', 182, 'ed', 'COMPRENSIÓN Y A', '101', '', 1, '44'),
-(44, 4, 'j', 182, 'ed', 'COMPRENSIÓN Y A', '101', '', 1, '44'),
-(43, 5, 'v', 181, 'ed', 'COMPRENSIÓN Y A', '101', '', 1, '44'),
-(42, 4, 'v', 181, 'ed', 'COMPRENSIÓN Y A', '101', '', 1, '44'),
-(41, 5, 'w', 181, 'EG108', 'COMPRENSIÓN Y A', '101', '', 1, '44'),
-(40, 4, 'w', 181, 'EG108', 'COMPRENSIÓN Y A', '101', '', 1, '44'),
-(39, 6, 'm', 181, 'EG108', 'I', '101', '', 1, '44'),
-(38, 5, 'm', 181, 'EG108', 'I', '101', '', 1, '44'),
-(37, 4, 'm', 181, 'EG108', 'I', '101', '', 1, '44'),
-(50, 12, 'f', 182, 'ed', '2', '101', '', 1, '44'),
-(51, 13, 'f', 182, 'ed', '2', '101', '', 1, '44'),
-(52, 8, 'f', 181, 'ed', '2', '101', '', 1, '44'),
-(53, 9, 'f', 181, 'ed', '2', '101', '', 1, '44');
 
 -- --------------------------------------------------------
 
@@ -417,19 +477,30 @@ CREATE TABLE `signatories` (
 
 CREATE TABLE `subject` (
   `subject_id` int(11) NOT NULL,
-  `subject_code` varchar(15) NOT NULL,
+  `subject_code` varchar(50) NOT NULL,
   `subject_title` varchar(100) NOT NULL,
-  `member_id` int(11) NOT NULL
+  `nombre` varchar(50) NOT NULL,
+  `name_plan` varchar(10) NOT NULL,
+  `tipo_cur` varchar(50) NOT NULL,
+  `prog_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `subject`
 --
 
-INSERT INTO `subject` (`subject_id`, `subject_code`, `subject_title`, `member_id`) VALUES
-(7, 'EST201', 'ESTADÍSTICA BÁSICA', 27),
-(6, 'EG108', 'QUÍMICA GENERAL', 27),
-(8, 'ed', 'COMPRENSIÓN Y ARGUMENTACIÓN', 44);
+INSERT INTO `subject` (`subject_id`, `subject_code`, `subject_title`, `nombre`, `name_plan`, `tipo_cur`, `prog_id`) VALUES
+(31, 'SIS410', 'SEMINARIO DE TESIS', 'ESTUDIOS ESPECIFICOS', 'Plan 7', 'OBLIGATORIO', 28),
+(30, 'SIS227', 'TOPICOS AVANZADOS INTELIGENCIA COMPUTACIONAL', 'ESTUDIOS ESPECIFICOS', 'Plan 7', 'OBLIGATORIO', 28),
+(29, 'SIS305', 'FUNDAMENTOS DE BASE DE DATOS', 'ESTUDIOS DE ESPECIALIDAD', 'Plan 7', 'OBLIGATORIO', 28),
+(28, 'SIS303', 'BASE DE DATOS 1', 'ESTUDIOS DE ESPECIALIDAD', 'Plan 7', 'OBLIGATORIO', 28),
+(27, 'HUM111', 'DESAROLLO DE CAPACIDADES TIC', 'ESTUDIOS GENERALES', 'Plan 7', 'OBLIGATORIO', 28),
+(32, 'SIS206', 'PROGRAMACION ORIENTADOS A OBJETOS 2', 'ESTUDIOS DE ESPECIALIDAD', 'Plan 7', 'OBLIGATORIO', 28),
+(33, 'SIS307', 'GESTION DE BASE DE DATOS', 'ESTUDIOS ESPECIFICOS', 'Plan 7', 'OBLIGATORIO', 28),
+(34, 'SIS202', 'INTRODUCCION A LA INGENIERIA DE SISTEMAS', 'ESTUDIOS ESPECIFICOS', 'Plan 7', 'OBLIGATORIO', 28),
+(35, 'SIS408', 'PROYECTO DE TESIS', 'ESTUDIOS ESPECIFICOS', 'Plan 7', 'OBLIGATORIO', 28),
+(36, 'TR-01', 'VIAJES', 'ESTUDIOS DE ESPECIALIDAD', 'Plan 6', 'OBLIGATORIO', 43),
+(37, 'TR-12', 'COMERCIO', 'ESTUDIOS DE ESPECIALIDAD', 'Plan 7', 'OBLIGATORIO', 43);
 
 -- --------------------------------------------------------
 
@@ -469,18 +540,37 @@ CREATE TABLE `time` (
 --
 
 INSERT INTO `time` (`time_id`, `time_start`, `time_end`, `days`, `turno`) VALUES
-(4, '07:00:00', '08:00:00', 'mwfjv', 'M'),
-(5, '08:00:00', '09:00:00', 'mwfjv', 'M'),
-(6, '09:00:00', '10:00:00', 'mwfjv', 'M'),
-(7, '10:00:00', '11:00:00', 'mwfjv', 'M'),
-(8, '11:00:00', '12:00:00', 'mwfjv', 'M'),
-(9, '12:00:00', '13:00:00', 'mwfjv', 'M'),
-(10, '13:00:00', '14:00:00', 'mwfjv', 'T'),
-(11, '14:00:00', '15:00:00', 'mwfjv', 'T'),
-(12, '15:00:00', '16:00:00', 'mwfjv', 'T'),
-(13, '16:00:00', '17:00:00', 'mwfjv', 'T'),
-(14, '17:00:00', '18:00:00', 'mwfjv', 'T'),
-(15, '18:00:00', '19:00:00', 'mwfjv', 'T');
+(1, '07:00:00', '08:00:00', 'mwfjv', 'M'),
+(2, '08:00:00', '09:00:00', 'mwfjv', 'M'),
+(3, '09:00:00', '10:00:00', 'mwfjv', 'M'),
+(4, '10:00:00', '11:00:00', 'mwfjv', 'M'),
+(5, '11:00:00', '12:00:00', 'mwfjv', 'M'),
+(6, '12:00:00', '13:00:00', 'mwfjv', 'M'),
+(7, '13:00:00', '14:00:00', 'mwfjv', 'T'),
+(8, '14:00:00', '15:00:00', 'mwfjv', 'T'),
+(9, '15:00:00', '16:00:00', 'mwfjv', 'T'),
+(10, '16:00:00', '17:00:00', 'mwfjv', 'T'),
+(11, '17:00:00', '18:00:00', 'mwfjv', 'T'),
+(12, '18:00:00', '19:00:00', 'mwfjv', 'T');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_curso`
+--
+
+CREATE TABLE `tipo_curso` (
+  `tipo_id` int(11) NOT NULL,
+  `tipo_cur` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tipo_curso`
+--
+
+INSERT INTO `tipo_curso` (`tipo_id`, `tipo_cur`) VALUES
+(1, 'OBLIGATORIO'),
+(2, 'ELECTIVO');
 
 -- --------------------------------------------------------
 
@@ -528,6 +618,12 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `name`, `status`, `progra
 --
 
 --
+-- Indices de la tabla `area`
+--
+ALTER TABLE `area`
+  ADD PRIMARY KEY (`area_id`);
+
+--
 -- Indices de la tabla `cys`
 --
 ALTER TABLE `cys`
@@ -553,10 +649,22 @@ ALTER TABLE `exam_sched`
   ADD PRIMARY KEY (`sched_id`);
 
 --
+-- Indices de la tabla `grupo`
+--
+ALTER TABLE `grupo`
+  ADD PRIMARY KEY (`sec_id`);
+
+--
 -- Indices de la tabla `member`
 --
 ALTER TABLE `member`
   ADD PRIMARY KEY (`member_id`);
+
+--
+-- Indices de la tabla `plan_e`
+--
+ALTER TABLE `plan_e`
+  ADD PRIMARY KEY (`plan_id`);
 
 --
 -- Indices de la tabla `program`
@@ -619,6 +727,12 @@ ALTER TABLE `time`
   ADD PRIMARY KEY (`time_id`);
 
 --
+-- Indices de la tabla `tipo_curso`
+--
+ALTER TABLE `tipo_curso`
+  ADD PRIMARY KEY (`tipo_id`);
+
+--
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
@@ -629,16 +743,22 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `area`
+--
+ALTER TABLE `area`
+  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `cys`
 --
 ALTER TABLE `cys`
-  MODIFY `cys_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `cys_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `dept`
 --
 ALTER TABLE `dept`
-  MODIFY `dept_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `dept_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `designation`
@@ -653,10 +773,22 @@ ALTER TABLE `exam_sched`
   MODIFY `sched_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `grupo`
+--
+ALTER TABLE `grupo`
+  MODIFY `sec_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+
+--
+-- AUTO_INCREMENT de la tabla `plan_e`
+--
+ALTER TABLE `plan_e`
+  MODIFY `plan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `program`
@@ -668,25 +800,25 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT de la tabla `rank`
 --
 ALTER TABLE `rank`
-  MODIFY `rank_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `rank_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `room`
 --
 ALTER TABLE `room`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `salut`
 --
 ALTER TABLE `salut`
-  MODIFY `salut_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `salut_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `sched_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `sched_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=781;
 
 --
 -- AUTO_INCREMENT de la tabla `settings`
@@ -704,7 +836,7 @@ ALTER TABLE `signatories`
 -- AUTO_INCREMENT de la tabla `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `sy`
@@ -716,7 +848,13 @@ ALTER TABLE `sy`
 -- AUTO_INCREMENT de la tabla `time`
 --
 ALTER TABLE `time`
-  MODIFY `time_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `time_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_curso`
+--
+ALTER TABLE `tipo_curso`
+  MODIFY `tipo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `user`

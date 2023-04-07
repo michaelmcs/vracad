@@ -13,17 +13,18 @@ include('../dist/includes/dbcon.php');
 			$count=mysqli_num_rows($query);		
 			if ($count>0)
 			{
-				echo "<script type='text/javascript'>alert('Rank already added!');</script>";	
+				echo "<script type='text/javascript'>alert('Rango ya Existe!');</script>";	
 				echo "<script>document.location='rank.php'</script>";  
 			}	
 			else
 			{	
-			mysqli_query($con,"INSERT INTO rank(rank) 
-				VALUES('$rank')")or die(mysqli_error());
+			mysqli_query($con,"INSERT INTO rank 
+				(rank) VALUES('$rank')")or die(mysqli_error());
 				
-				echo "<script type='text/javascript'>alert('Successfully added a rank!');</script>";	
+				echo "<script type='text/javascript'>alert('Agregado Exitosamente Categoria/Tipo de Docente>!');</script>";	
 				echo "<script>document.location='rank.php'</script>";  
 			}
 }					  
 	
 ?>
+

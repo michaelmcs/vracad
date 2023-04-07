@@ -22,7 +22,7 @@ include('../dist/includes/dbcon.php');
 			mysqli_query($con,"INSERT INTO program(prog_code,prog_title) 
 				VALUES('$code','$name')")or die(mysqli_error());
 			}	
-			echo "<script type='text/javascript'>alert('Successfully added a program!');</script>";	
+			echo "<script type='text/javascript'>alert('Programa Agregado Exitosamente!');</script>";	
 			echo "<script>document.location='program.php'</script>";  
 	
 }					  

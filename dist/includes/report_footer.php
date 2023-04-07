@@ -1,5 +1,5 @@
 <div style="clear:both;"><br></div>  
-<span>Preparado por:</span><br><br>
+<span>Preparado por:</span>
 <?php 
 			include('../dist/includes/dbcon.php');
 			$id=$_SESSION['id'];
@@ -9,7 +9,7 @@
 				 echo "<span>$row[designation_name]</span>";
 ?>
 <br><br>
-<span>Recomendación de aprobación:</span><br><br>
+<span>Recomendación de aprobación:</span>
 <?php 
 			$query=mysqli_query($con,"select * from signatories natural join member natural join designation where seq='2' and set_by='$id'")or die(mysqli_error($con));
 				 $row=mysqli_fetch_array($query);
@@ -23,7 +23,7 @@
 				 echo "<span style='position:absolute;left:400px'>$row1[designation_name]</span>";
 ?>
 <br><br>
-<span>aprobación:</span><br><br>
+<span>aprobación:</span>
 <?php 
 			
 			$query=mysqli_query($con,"select * from signatories natural join member natural join designation where seq='4' and set_by='$id'")or die(mysqli_error($con));

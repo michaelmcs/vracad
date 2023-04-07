@@ -29,7 +29,7 @@ include('../dist/includes/dbcon.php');
 $member=$_POST['faculty'];
 $sid=$_SESSION['settings'];
 
-$search=mysqli_query($con,"select * from member where member_id='$member'")or die(mysqli_error($con));
+$search=mysqli_query($con,"select * from member  NATURAL JOIN program where member_id='$member'")or die(mysqli_error($con));
 	$row=mysqli_fetch_array($search);
 
 $settings=mysqli_query($con,"select * from settings where settings_id='$sid'")or die(mysqli_error($con));

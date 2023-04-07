@@ -49,6 +49,9 @@ endif;
                 <tr>
                 <th>Código de asunto</th>
                 <th>Título del tema</th>
+                <th>Area Curricular</th>
+                <th>Plan de Estudios</th>
+                <th>tipo de Curso</th>
                 <th>Accion</th>
                 
                 
@@ -57,7 +60,7 @@ endif;
               
     <?php
     
-        $member=$_SESSION['id'];
+        $prog=$_SESSION['id'];
         include('../dist/includes/dbcon.php');
         $query=mysqli_query($con,"select * from subject order by subject_code")or die(mysqli_error());
           
@@ -65,22 +68,41 @@ endif;
             $id=$row['subject_id'];
             $code=$row['subject_code'];
             $title=$row['subject_title'];
-            $mid=$row['member_id'];
+            $nombre=$row['nombre'];
+            $name_plan=$row['name_plan'];
+            $mid=$row['prog_id'];
+            $tipo_cur=$row['tipo_cur'];
+            
     ?>
-                <tr>
+
+              <?php 
+                  if ($prog==$mid or $prog==44)  
+                    {
+                      ?>
+                      <tr>
                 <td><?php echo $code;?></td>
                 <td><?php echo $title;?></td> 
-                <td>
-                <?php 
-                  if ($member==$mid)  
+                <td><?php echo $nombre;?></td>
+                <td><?php echo $name_plan;?></td> 
+                <td><?php echo $tipo_cur;?></td> 
+                <td> <?php 
+                      
+                      }
+                     ?>
+                
+                
+
+
+                      <?php 
+                     if ($prog==$mid or $prog==44)  
                     {
                       echo "  
                         <a id='click' href='subject.php?id=$id&code=$code&title=$title'>
                           <i class='glyphicon glyphicon-edit text-blue'></i></a>
                         <a id='removeme' href='subject_del.php?id=$id'>
                           <i class='glyphicon glyphicon-remove text-red'></i></a>";
-                  }
-                ?>
+                       }
+                      ?>
                 </td>
         
                 </tr>
@@ -111,10 +133,51 @@ endif;
 					 <div class="col-md-12">
 						  
 						  <div class="form-group">
-							<label for="date">Añadir tema</label><br>
-								<input type="text" class="form-control" name="code" placeholder="Subject Code" required>
-								<input type="text" class="form-control" name="title" placeholder="Subject Title" required>
+							<label for="date">Agregar Curso</label><br>
+								<input type="text" class="form-control" name="code" placeholder="Codigo del Curso" required>
+								<input type="text" class="form-control" name="title" placeholder="Nombre del Curso" required>
+              </div><!-- /.form group -->
+                
+              <div class="form-group">
+							<label for="date">Area Curricular</label><br>
+								<select class="form-control select2" style="width: 100%;" name="nombre" required>
+							<?php
+							 include('../dist/includes/dbcon.php');
+								$query2=mysqli_query($con,"select * from area ")or die(mysqli_error());
+								  while($row2=mysqli_fetch_array($query2)){
+							  ?>
+									<option><?php echo $row2['nombre'];?></option>
+							  <?php }?>
+									</select>
+								
 						  </div><!-- /.form group -->
+              
+              <div class="form-group">
+							<label for="date">Plan De estudios </label><br>
+								<select class="form-control select2" style="width: 100%;" name="name_plan" required>
+							<?php
+							 include('../dist/includes/dbcon.php');
+								$query2=mysqli_query($con,"select * from plan_e ")or die(mysqli_error());
+								  while($row2=mysqli_fetch_array($query2)){
+							  ?>
+									<option><?php echo $row2['name_plan'];?></option>
+							  <?php }?>
+									</select>
+						  </div><!-- /.form group -->
+
+              <div class="form-group">
+							<label for="date">Plan De estudios </label><br>
+								<select class="form-control select2" style="width: 100%;" name="tcurso" required>
+							<?php
+							 include('../dist/includes/dbcon.php');
+								$query2=mysqli_query($con,"select * from tipo_curso ")or die(mysqli_error());
+								  while($row2=mysqli_fetch_array($query2)){
+							  ?>
+									<option><?php echo $row2['tipo_cur'];?></option>
+							  <?php }?>
+									</select>
+						  </div><!-- /.form group -->
+
 					</div>
 				  </div>	
                
@@ -141,10 +204,10 @@ endif;
 					 <div class="col-md-12">
 						  <form method="post" action="subject_update.php">
 						  <div class="form-group">
-							<label for="date">Actualizar asunto</label><br>
+							<label for="date">Actualizar Curso</label><br>
                 <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $_REQUEST['id'];?>">
-								<input type="text" class="form-control" id="code" name="code" value="<?php echo $_REQUEST['code'];?>" placeholder="Subject Code">
-								<input type="text" class="form-control" id="class" name="title" value="<?php echo $_REQUEST['title'];?>" placeholder="Subject Title" required>
+								<input type="text" class="form-control" id="code" name="code" value="<?php echo $_REQUEST['code'];?>" placeholder="Codigo Curso">
+								<input type="text" class="form-control" id="class" name="title" value="<?php echo $_REQUEST['title'];?>" placeholder="Nombre del Curso" required>
 						  </div><!-- /.form group -->
 					</div>
 				  </div>	

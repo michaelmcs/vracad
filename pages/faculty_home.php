@@ -17,7 +17,7 @@ endif;?>
     <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="../plugins/select2/select2.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    <!-- AdminLTE Skins. Choose a skin from the css/skinsdddd
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
 	<script src="../dist/js/jquery.min.js"></script>
@@ -51,7 +51,7 @@ endif;?>
                   
                    <a href="#searchroom" data-target="#searchroom" data-toggle="modal" class="dropdown-toggle btn btn-warning">
        
-                      Salones				
+                      Numero de Aula				
                     </a>
                     </h4>
                 </div> 
@@ -74,6 +74,10 @@ endif;?>
 							</thead>
 							
 		<?php
+
+
+
+				$prog=$_SESSION['id'];
 				include('../dist/includes/dbcon.php');
 				$query=mysqli_query($con,"select * from time where days='mwfjv' order by time_start")or die(mysqli_error());
 					
@@ -93,58 +97,17 @@ endif;?>
 							  </tr>
 							
 		<?php }?>					  
-		</table>    
+		</table>
+				<div class="result" id="form">
+				</div>    
 		</div><!--col end -->
+		
+		
 		<div class="col-md-6">
-			<table class="table table-bordered table-striped">
-								<thead>
-								  <tr>
-									<th>Tiempo</th>
-									<th>T</th>
-									<th>TH</th>
-									
-								  </tr>
-								</thead>
-								
-			<?php
-					include('../dist/includes/dbcon.php');
-					$query=mysqli_query($con,"select * from time where days='tth' order by time_start")or die(mysqli_error());
-						
-					while($row=mysqli_fetch_array($query)){
-							$id=$row['time_id'];
-							$start=date("h:i a",strtotime($row['time_start']));
-							$end=date("h:i a",strtotime($row['time_end']));
-			?>
-								  <tr >
-									<td><?php echo $start."-".$end;?></td>
-									<td><input type="checkbox" name="t[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"></td>
-									<td><input type="checkbox" name="th[]" value="<?php echo $id;?>" style="width: 20px; height: 20px;"></td>
-									
-								  </tr>
-								
-			<?php }?>					  
-			</table>  
-			<div class="result" id="form">
-					  </div>			
-         </div><!--col end-->           
-        </div><!--row end-->        
-					
-			
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col (right) -->
-            
-            <div class="col-md-3">
-              <div class="box box-warning">
-               
-                <div class="box-body">
-                  <!-- Date range -->
-                  <div id="form1">
-					
-				  <div class="row">
-					 <div class="col-md-12">
-						  <div class="form-group">
-								<label for="date">Profesor</label>
+		
+			<div class="" id="form">
+			<div class="form-group">
+								<label for="date">Docente</label>
 								
 									<select class="form-control select2" name="teacher" required>
 									<?php 
@@ -158,56 +121,110 @@ endif;?>
 									</select>
 								
 						 	 </div><!-- /.form group -->
-						  <div class="form-group">
-										<label for="date">Tema</label>
+
+							  <div class="form-group">
+										<label for="date">Nombre del Curso</label>
 										
 											<select class="form-control select2" name="subject" required>
 											<?php 
-												$query2=mysqli_query($con,"select * from subject order by subject_code")or die(mysqli_error($con));
+												$query2=mysqli_query($con,"select * from subject order by subject_title")or die(mysqli_error($con));
 												while($row=mysqli_fetch_array($query2)){
+													$mid=$row['prog_id'];
 											?>
-													<option><?php echo $row['subject_code'];?></option>
+
+															<?php 
+																			if ($prog==$mid or $prog==44)  
+																				{
+																				?>
+																				<tr>
+
+																				<option value="<?php echo $row['subject_code'];?>"><?php echo $row['subject_title'];?></option>
+																			<?php 
+																				
+																			}
+																			?>
+													
 											<?php }
 												
 											?>
 											</select>
 										
 						  </div><!-- /.form group -->
+
 						  <div class="form-group">
-							<label for="date">Curso, Yr & Seccion</label>
+										<label for="date">Procendecia del Docente</label>
+										
+											<select class="form-control select2" name="designation" required>
+											<?php 
+												$query2=mysqli_query($con,"select * from program where prog_title not in ('admin') order by prog_code")or die(mysqli_error($con));
+												while($row=mysqli_fetch_array($query2)){
+											?>
+													<option><?php echo $row['prog_title'];?></option>
+											<?php }
+												
+											?>
+											</select>
+										
+						  </div><!-- /.form group -->
+
+					  </div>			
+         </div><!--col end-->   
+		
+		
+		
+		 <div class="col-md-3">
+              <div class="box box-warning">
+               
+                <div class="box-body">
+                  <!-- Date range -->
+                  <div id="form1">
+					
+				  <div class="row">
+					 <div clss="col-md-12">
+
+						  <div class="form-group">
+							<label for="date">Numero de Estudiantes</label><br>
+							<textarea name="alum" cols="22"  rows="1" placeholder="Ejm.1" required ></textarea>
+								
+						  </div><!-- /.form group -->
+
+
+
+						
+						  <div class="form-group">
+							<label for="date">Horas Teoricas</label><br>
+							<textarea name="hteo" cols="22"  rows="1" placeholder="Ejemplo 2" required></textarea>
+								
+						  </div><!-- /.form group -->
+
+
+						  
+					 		<div class="form-group">
+							<label for="date">Ciclo</label>
 							<select class="form-control select2" name="cys" required>
 								  <?php 
-									$query2=mysqli_query($con,"select * from cys order by cys")or die(mysqli_error($con));
-									 while($row=mysqli_fetch_array($query2)){
+									$query2=mysqli_query($con,"select * from cys order by cys_id")or die(mysqli_error($con));
+									  while($row=mysqli_fetch_array($query2)){
 								  ?>
 										<option><?php echo $row['cys'];?></option>
 								  <?php }
 									
 								  ?>
 								</select>	
+
+
+
+								
 						  </div><!-- /.form group -->
-						  <div class="form-group">
-							<label for="date">Salon</label>
-							<select class="form-control select2" name="room" required>
-								  <?php 
-									$query2=mysqli_query($con,"select * from room order by room")or die(mysqli_error($con));
-									  while($row=mysqli_fetch_array($query2)){
-								  ?>
-										<option><?php echo $row['room'];?></option>
-								  <?php }
-									
-								  ?>
-								</select>	
-						  </div><!-- /.form group -->
-			
 
 
 						  <div class="form-group">
 							<label for="date">Observaciones</label><br>
-								<textarea name="remarks" cols="30" placeholder="encierre los comentarios entre paréntesis()"></textarea>
+								<textarea name="remarks" cols="50" placeholder="encierre los comentarios entre paréntesis()"></textarea>
 								
 						  </div><!-- /.form group -->
 						</div>
+						
 					
 					
 
@@ -216,19 +233,100 @@ endif;?>
                   
                   <div class="form-group">
                     
-                      <button class="btn btn-lg btn-primary" id="daterange-btn" name="save" type="submit">
-                        Guardar
+                      <button class="btn btn-sm btn-primary" id="daterange-btn" name="save" type="submit">
+                        --Guardar
+
                       </button>
-					  <button class="uncheck btn btn-lg btn-success" type="reset">Desmarcar todo</button>
-					  
-					  
+
+					  <button class="uncheck btn btn-sm btn-success" type="reset">Desmarcar</button>
+					 	
                    </div>
                   </div><!-- /.form group --><hr>
+				  
+				</form>	
+
+                      
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col (right) -->
+
+			 <div class="col-md-3">
+              <div class="box box-warning">
+               
+                <div class="box-body">
+                  <!-- Date range -->
+                  <div id="form1">
+					
+				  <div class="row">
+					 <div class="col-md-12">
+
+							<div class="form-group">
+								<label for="date">Numero de Aula</label>
+								<select class="form-control select2" name="room" required>
+									<?php 
+									
+										$query2=mysqli_query($con,"select * from room order by room")or die(mysqli_error($con));
+										while($row=mysqli_fetch_array($query2)){
+										$mid=$row['prog_code'];
+											?>
+
+												<?php 
+													if ($prog==$mid or $prog==44)  
+													{
+													?>
+													<tr>
+													<option><?php echo $row['room'];?></option>
+												 <?php 							
+												}
+												?>
+													
+											<?php }
+												
+											?>
+									</select>	
+					
+							</div><!-- /.form group -->
+
+
+							<div class="form-group">
+								<label for="date">Horas Practicas</label><br>
+								<textarea name="hprac" cols="20"  rows="1" placeholder="Ejemplo 3"></textarea>
+									
+							</div><!-- /.form group -->
+
+
+							<div class="form-group">
+								<label for="date">Grupo</label>
+								<select class="form-control select2" name="sec" required>
+									<?php 
+										$query2=mysqli_query($con,"select * from grupo order by sec")or die(mysqli_error($con));
+										while($row=mysqli_fetch_array($query2)){
+									?>
+											<option><?php echo $row['sec'];?></option>
+									<?php }
+										
+									?>
+									</select>	
+							</div><!-- /.form group -->
+
+						</div>					
+					</div>	
+               
+                
 				</form>	
                       
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col (right) -->
+		 
+        </div><!--row end-->        
+					
+			
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col (right) -->
+            
+           
 			
 			
           </div><!-- /.row -->
@@ -239,19 +337,21 @@ endif;?>
       </div><!-- /.content-wrapper -->
       <?php include('../dist/includes/footer.php');?>
     </div><!-- ./wrapper -->
+
+	
 	<div id="searcht" class="modal fade in" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog">
 	  <div class="modal-content" style="height:auto">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Busqueda de Horario de la Facultad</h4>
+                <h4 class="modal-title">Busqueda de Horarios</h4>
               </div>
               <div class="modal-body">
 			  <form class="form-horizontal" method="post" action="faculty_sched.php" target="_blank">
                 
 				<div class="form-group">
-					<label class="control-label col-lg-2" for="name">Facultad</label>
+					<label class="control-label col-lg-2" for="name">Docente</label>
 					<div class="col-lg-10">
 					<select class="select2" name="faculty" style="width:90%!important" required>
 								  <?php 
@@ -285,7 +385,7 @@ endif;?>
 	  <div class="modal-content" style="height:auto">
               <div class="modal-header">
                 <button type="button" class="close" data-diHorario de clasesmiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
+                  <span aria-hidden="true">X</span></button>
                 <h4 class="modal-title">Busqueda de horario de clase</h4>
               </div>
               <div class="modal-body">

@@ -10,6 +10,7 @@ error_reporting(0);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>salon <?php include('../dist/includes/title.php');?></title>
+    <meta http-equiv = "content-language" content = "es">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -54,26 +55,43 @@ error_reporting(0);
               </thead>
               
     <?php
+        $prog=$_SESSION['id'];
         include('../dist/includes/dbcon.php');
         $query=mysqli_query($con,"select * from room order by room")or die(mysqli_error());
           
           while($row=mysqli_fetch_array($query)){
             $id=$row['room_id'];
             $room=$row['room'];
+            $mid=$row['prog_id'];
     ?>
-                <tr>
-                <td>salon <?php echo $room;?></td>
-                 
-                <td><a id="click" href="room.php?id=<?php echo $id;?>&room=<?php echo $room;?>">
-                <i class="glyphicon glyphicon-edit text-blue"></i></a>
-                <a id="removeme" href="room_del.php?id=<?php echo $id;?>">
-                <i class="glyphicon glyphicon-remove text-red"></i></a>
-                </td>
-        
+                <?php 
+                  if ($prog==$mid or $prog==44)  
+                    {
+                      ?>
+                      <tr>
+                <td>salon <?php echo $room;?></td> 
+              
+              <td> <?php 
+                      
+                  }
+                ?>
+                
+              <?php 
+                  if ($prog==$mid or $prog==44)  
+                    { 
+                    echo "
+                <a id='click' href='room.php?id=<?php echo $id;?>&room=<?php echo $room;?'>
+                <i class='glyphicon glyphicon-edit text-blue'></i></a>
+                <a id='removeme' href='room_del.php?id=<?php echo $id;?>'>
+                <i class='glyphicon glyphicon-remove text-red'></i></a>";
+                }
+              ?>
+              </td>
                 </tr>
 
               
-<?php }?>           
+<?php }?>      
+
 </table>  
 							  
 		</div><!--col end -->
@@ -99,7 +117,7 @@ error_reporting(0);
 					 <div class="col-md-12">
 						  
 						  <div class="form-group">
-							<label for="date">Agregar Salon</label><br>
+							<label for="date">Agregar Numero de Salon</label><br>
 								<input type="text" class="form-control" name="room" placeholder="Salon" required>
 								
 						  </div><!-- /.form group -->
@@ -129,7 +147,7 @@ error_reporting(0);
 					 <div class="col-md-12">
 						  <form method="post" action="room_update.php">
 						  <div class="form-group">
-							<label for="date">Actualizar Salon</label><br>
+							<label for="date">Actualizar Numero de Aula</label><br>
 								<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $_REQUEST['id'];?>" placeholder="Room ID" readonly>
 								<input type="text" class="form-control" id="class" name="room" value="<?php echo $_REQUEST['room'];?>" placeholder="Salon" required>
 						  </div><!-- /.form group -->

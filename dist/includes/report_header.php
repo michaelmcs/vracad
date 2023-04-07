@@ -8,7 +8,8 @@ endif;
 		font-size: 11px!important;
 	}
 	table td,th{
-		border: 1px solid black;
+		/* border: 1px solid black; */
+		border: 2px solid blue;
 		
 	}
 	table{
@@ -20,7 +21,7 @@ endif;
 		height:45px;
 	}
 	thead tr {
-		height:5px!important;
+		height:6px!important;
 	}
 	.logo{
 		float:left;
@@ -31,7 +32,7 @@ endif;
 		margin-right:100px
 	}
 	.wrapper_print{
-		width:60%;
+		width:100%;
 		margin:auto;
 	}
 	.first{
@@ -44,7 +45,8 @@ endif;
 		font-weight:bolder;
 	}
 	th{
-		width:15%
+		/* width:15% */
+		width:18%
 	}
 	.sec{
 		width:30%;
@@ -78,20 +80,30 @@ endif;
 		$room="";
 		$class="";	
 		$text="Docente";
-		$value=$row['member_salut']." ".$row['member_first']." ".$row['member_last'];  
+		$value=$row['member_first']." ".$row['member_last'];  
 		echo "Universidad Nacional del Altiplano";
 		$displaym="hideme";
 		$displayr="showme";
 		$displayc="showme";
+
+		$room="";
+		$class="";	
+		$text1="Programa";
+		$value1=$row1['prog_title'];  
+		// $value=$row['member_salut']." ".$row['member_first']." ".$row['member_last']; 
+
+		
+		
 		
 	}
 	elseif($room<>"")
 	{
 		$member="";
 		$class="";
-		$text="Room";
+		$text="Salon";
 		$value=$room;
-		echo "ROOM SCHEDULE";
+		echo "UNIVERSIDAD NACIONAL DEL ATLTIPLANO PUNO - - ";
+		echo " HORARIO POR SALON";
 		$displayr="hideme";
 		$displayc="showme";
 		$displaym="showme";
@@ -116,12 +128,24 @@ endif;
 <span style="color: blue;margin-right: 15px">
 	<?php echo $value;?>
 </span>
+
+
+<span style="margin-right: 5px"><?php echo $text1;?>: </span>
+<span style="color: blue;margin-right: 15px">
+	<?php echo $value1;?>
+</span>
+
+
 <span style="margin-right: 5px">Año Academico</span>
 <span style="color: blue;margin-right: 15px">
-	<?php echo $rows['sy']; ?>
+	<?php echo $rows['sy']. " - ". $rows['sem']; ?>
 </span>
-<span style="margin-right: 5px">Semestre: </span>
-<span style="color: blue;margin-right: 15px">
-	<?php echo $rows['sem']; ?> 
-</span>
+
+<?php 
+?>
+
+
+
+
+
 </h5>

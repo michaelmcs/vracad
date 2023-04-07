@@ -56,16 +56,21 @@ error_reporting(0);
               
     <?php
         include('../dist/includes/dbcon.php');
-        $query=mysqli_query($con,"select * from program order by prog_code")or die(mysqli_error());
+        $query=mysqli_query($con,"SELECT * FROM program WHERE prog_title NOT IN ('admin') ORDER BY prog_code")or die(mysqli_error());
+
           
           while($row=mysqli_fetch_array($query)){
             $id=$row['prog_id'];
             $code=$row['prog_code'];
             $name=$row['prog_title'];
     ?>
+
                 <tr>
                 <td><?php echo $code;?></td>
                  <td><?php echo $name;?></td>
+              
+
+
                 <td><a id="click" href="program.php?id=<?php echo $id;?>&code=<?php echo $code;?>&name=<?php echo $name;?>">
                 <i class="glyphicon glyphicon-edit text-blue"></i></a>
                 <a id="removeme" href="program_del.php?id=<?php echo $id;?>">

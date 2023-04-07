@@ -133,7 +133,7 @@ error_reporting(0);
 							<label for="date">TURNO</label><br>
 								<select class="form-control select2" name="turno" required>
 									<option value="M">MAÑANA</option>
-									<option value="T">TARDE</option> -->
+									<option value="T">TARDE</option> 
 									<!-- <option value="fst">Examen Sched</option> -->
 								</select>
 						  </div><!-- /.form group -->

@@ -12,10 +12,10 @@ include('../dist/includes/dbcon.php');
 	$dept =$_POST['dept'];
 	$status =$_POST['status'];
 	$designation =$_POST['designation'];
-	$username=strtolower($first.$dept);
+	// $username=strtolower($first.$dept);
 	
 	mysqli_query($con,"update member set member_salut='$salut',member_last='$last',member_first='$first',member_rank='$rank',dept_code='$dept',
-	designation_id='$designation',username='$username',status='$status' where member_id='$id'")or die(mysqli_error());
+	designation_id='$designation',status='$status' where member_id='$id'")or die(mysqli_error());
 	
 	echo "<script type='text/javascript'>alert('Detalles de miembros actualizados con éxito!');</script>";
 	echo "<script>document.location='teacher.php'</script>";

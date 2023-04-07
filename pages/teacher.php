@@ -19,6 +19,11 @@ endif;
     <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="../plugins/select2/select2.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+  
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
@@ -51,11 +56,8 @@ endif;
                 <th>Apellido</th>
                 <th>Nombre</th>
                 <th>Rango</th>
-                <th>Facultad</th>
+                <th>Departamento</th>
                 <th>Designacion</th>
-                <th>Nombre de usuario</th>
-                
-                <th>Estado</th>
                 <th>Accion</th>
                 
                 
@@ -72,11 +74,10 @@ endif;
             $first=$row['member_first'];
             $rank=$row['member_rank'];
             $salut=$row['member_salut'];
-            $dept=$row['dept_code'];
+            $dept=$row['dept_name'];
             $designation=$row['designation_name'];
-            $username=$row['username'];
-            $password=$row['password'];
-            $status=$row['status'];
+
+            // $status=$row['status'];
     ?>
                 <tr>
                 <td><?php echo $salut;?></td>
@@ -85,9 +86,8 @@ endif;
                 <td><?php echo $rank;?></td>
                 <td><?php echo $dept;?></td>
                 <td><?php echo $designation;?></td>
-                <td><?php echo $username;?></td>
                 
-                <td><?php echo $status;?></td>
+                <!-- <td><?php echo $status;?></td> -->
                 <td>
                   <a id="click" href="teacher_edit.php?id=<?php echo $id;?>">
                     <i class="glyphicon glyphicon-edit text-blue"></i></a>
@@ -123,7 +123,8 @@ endif;
 				  <div class="row">
 					 <div class="col-md-12">
 						  <div class="form-group">
-							<label for="date">Saludo</label>
+
+							<label for="date">otro campo</label>
 							
 								<select class="form-control select2" name="salut" required>
 								  <?php 
@@ -138,17 +139,22 @@ endif;
 								</select>
 							
 						  </div><!-- /.form group -->
+           
+              
+              <div class="form-group">
+							<label for="date">Apellido</label><br>
+								<input type="text" class="form-control" name="last" placeholder="Apellidos" required>	
+						  </div><!-- /.form group -->
+
+
               <div class="form-group">
               <label for="date">Nombre</label><br>
-                <input type="text" class="form-control" name="first" placeholder="First Name" required> 
+                <input type="text" class="form-control" name="first" placeholder="Nombres" required> 
               </div><!-- /.form group -->
-						  <div class="form-group">
-							<label for="date">Apellido</label><br>
-								<input type="text" class="form-control" name="last" placeholder="Last Name" required>	
-						  </div><!-- /.form group -->
+						  
 						  
 						   <div class="form-group">
-							<label for="date">Rango</label>
+							<label for="date">Categoria/Condision</label>
 							
 								<select class="form-control select2" name="rank" required>
 								  <?php 
@@ -163,11 +169,11 @@ endif;
 							
 						  </div><!-- /.form group -->
 						  <div class="form-group">
-							<label for="date">Facultad</label>
+							<label for="date">departamento</label>
 							
 								<select class="form-control select2" name="dept" required>
 								  <?php 
-									$query2=mysqli_query($con,"select * from dept order by dept_code")or die(mysqli_error($con));
+									$query2=mysqli_query($con,"select * from dept order by dept_name")or die(mysqli_error($con));
 									  while($row=mysqli_fetch_array($query2)){
 								  ?>
 										<option value="<?php echo $row['dept_code'];?>"><?php echo $row['dept_name'];?></option>
@@ -177,31 +183,7 @@ endif;
 								</select>
 							
 						  </div><!-- /.form group -->
-						  <div class="form-group">
-							<label for="date">Designación </label>
-							
-								<select class="form-control select2" name="designation" required>
-								  <?php 
-									$query2=mysqli_query($con,"select * from designation order by designation_name")or die(mysqli_error($con));
-									  while($row=mysqli_fetch_array($query2)){
-								  ?>
-										<option value="<?php echo $row['designation_id'];?>"><?php echo $row['designation_name'];?></option>
-								  <?php }
-									
-								  ?>
-								</select>
-							
-						  </div><!-- /.form group -->
-						   <div class="form-group">
-              <label for="date">Estado</label>
-              
-                <select class="form-control select2" name="status" required>
-                  
-                    <option>admin</option>
-                    <option>user</option>
-                </select>
-              
-              </div><!-- /.form group -->
+
 					</div>
 				  </div>	
                

@@ -47,7 +47,7 @@ error_reporting(0);
 						<table id="example1" class="table table-bordered table-striped" style="margin-right:-10px">
               <thead>
                 <tr>
-                <th>Rango</th>
+                <th>Categoria</th>
                 <th>Accion</th>
                 
                 
@@ -99,8 +99,8 @@ error_reporting(0);
 					 <div class="col-md-12">
 						  <form method="post" action="rank_save.php">
 						  <div class="form-group">
-							<label for="date">Agregar Rango</label><br>
-								<input type="text" class="form-control" name="rank" placeholder="Rank" required>
+							<label for="date">Agregar Categoria</label><br>
+								<input type="text" class="form-control" name="rank" placeholder="Categoria/Condicion" required>
 								
 						  </div><!-- /.form group -->
 					</div>
@@ -126,9 +126,9 @@ error_reporting(0);
 					 <div class="col-md-12">
 						  <form method="post" action="rank_update.php">
 						  <div class="form-group">
-							<label for="date">Actualizar Rango</label><br>
+							<label for="date">Actualizar Categoria</label><br>
 								<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $_REQUEST['id'];?>" readonly>
-								<input type="text" class="form-control" id="class" name="rank" value="<?php echo $_REQUEST['rank'];?>" placeholder="Rank" required>
+								<input type="text" class="form-control" id="class" name="rank" value="<?php echo $_REQUEST['rank'];?>" placeholder="Categoria/Condicion" required>
 						  </div><!-- /.form group -->
 					</div>
 				  </div>	

@@ -1,366 +1,121 @@
-<?php session_start();
-if(empty($_SESSION['id'])):
-header('Location:../index.php');
-endif;?>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home | <?php include('../dist/includes/title.php');?></title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
-    <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="../plugins/select2/select2.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-	<script src="../dist/js/jquery.min.js"></script>
- </head>
-  <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-  <body class="hold-transition skin-yellow layout-top-nav" onload="myFunction()">
-    <div class="wrapper">
-      <?php include('../dist/includes/header_faculty.php');?>
-      <!-- Full Width Column -->
-      <div class="content-wrapper">
-        <div class="container">
-          <!-- Content Header (Page header) -->
-        
+<?
+//Lunes sched
+foreach ($m as $daym){ // Lunes a daym
+  //check conflict for member docente y hoario restriccion
+  $query_member=mysqli_query($con,"select *,COUNT(*) as count from schedule 
+  natural join member natural join time where member_id='$member' and schedule.time_id='$daym' and day='m'")or die(mysqli_error($con));
+    $row=mysqli_fetch_array($query_member);
+    $count_t=$row['count'];
+    $time1=date("h:i a",strtotime($row['time_start']))."-".date("h:i a",strtotime($row['time_end']));
+    $member1=$row['member_last'].", ".$row['member_first'];
+    $error_t="<span class='text-danger'>
+    <table width='100%'>
+      <tr>	
+        <td>Lunes</td>
+        <td>$time1</td> 
+        <td>$member1</td> 
 
-          <!-- Main content -->
-          <section class="content">
-            <div class="row">
-	      <div class="col-md-12">
-              <div class="box box-warning">
-              	 
-               <form method="post" id="reg-form">
-                <div class="box-body">
-				<div class="row">
-					<div class="col-md-6">
-							<table class="table table-bordered table-striped">
-							
+        <td class='text-danger'><b>Horario no valido</b></td>					
+      </tr>
+      </span>
+    </table>";
 
-							<thead>
-							  <tr>
-								<th class="first">Tiempo</th>
-								<th>M</th>
-								<th>W</th>
-								<th>F</th>
-								
-							  </tr>
-							</thead>
-							
-		<?php
-				include('../dist/includes/dbcon.php');
-				$member=$_SESSION['id'];
-				$sid=$_SESSION['settings'];
-				$query=mysqli_query($con,"select * from time where days='mwf' order by time_start")or die(mysqli_error());
-					
-				while($row=mysqli_fetch_array($query)){
-						$id=$row['time_id'];
-						$start=date("h:i a",strtotime($row['time_start']));
-						$end=date("h:i a",strtotime($row['time_end']));
-		?>
-							  <tr >
-								<td class="first"><?php echo $start."-".$end;?></td>
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='m' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
+    //din docentes condicion 
+  
 
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='w' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
+  //inicio flitro numero de salon restriccion por salon
+  $query_room=mysqli_query($con,"select *,COUNT(*) as count from schedule 
+  natural join member natural join time where room='$room' and schedule.time_id='$daym' and schedule.sec ='$grupo' and day='m' AND schedule.prog_code='$prog_code'")or die(mysqli_error($con));
+    $rowr=mysqli_fetch_array($query_room);
+    $count_r=$rowr['count'];
+    $timer=date("h:i a",strtotime($rowr['time_start']))."-".date("h:i a",strtotime($rowr['time_end']));
+    $roomr=$rowr['room'];
+    //recctriccon solo por salon
+    $error_r="<span class='text-danger'>
+    <table width='100%'>
+      <tr>
+        <td>Lunes</td>
+        <td>Salon $roomr</td>
+        <td class='text-danger'><b>Horario no valido</b></td>					
+      </tr>
+      </span>
+    </table>";
+  //finflitro numero de salon
+    //check conflict for class
 
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='f' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
-
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
-								
-							  </tr>
-							
-		<?php }?>					  
-		</table>    
-		</div>
-		<div class="col-md-6">
-			<table class="table table-bordered table-striped">
-								<thead>
-								  <tr>
-									<th class="first">Time</th>
-									<th>T</th>
-									<th>TH</th>
-									
-								  </tr>
-								</thead>
-								
-			<?php
-					
-					$query=mysqli_query($con,"select * from time where days='tth' order by time_start")or die(mysqli_error());
-						
-					while($row=mysqli_fetch_array($query)){
-							$id=$row['time_id'];
-							$start=date("h:i a",strtotime($row['time_start']));
-							$end=date("h:i a",strtotime($row['time_end']));
-			?>
-								  <tr >
-								<td class="first"><?php echo $start."-".$end;?></td>
-								
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='t' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
-
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
-								<td><?php 
-									$query1=mysqli_query($con,"select * from schedule natural join member where day='th' and schedule.member_id='$member' and time_id='$id' and settings_id='$sid'")or die(mysqli_error($con));
-								
-										$row1=mysqli_fetch_array($query1);
-										$id1=$row1['sched_id'];
-										$count=mysqli_num_rows($query1);
-										$encode=$row1['encoded_by'];
-										$mid=$_SESSION['id'];
-										
-										if ($count==0)
-										{
-											//echo "<td></td>";
-										}
-										else
-										{
-
-											echo $row1['subject_code'];
-											echo "<br>";
-											echo "$row1[cys]";
-											echo "<br>";
-											echo "Room ".$row1['room'];
-											echo "<br>";
-											echo $row1['remarks'];
-											
-										}	
-									?>
-								</td>
-								
-								
-							  </tr>
-								
-			<?php }?>			
-							 <tr>
-							 	<td><a href="faculty_class_sched.php?id=<?php echo $member;?>" class="btn btn-primary">impresión de Horario de clase  
-</a></td>	
-							 </tr>			  
-			</table> 			
-         </div><!--col end-->           
-        </div><!--row end-->        
-					
-			
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col (right) -->
-            
-           
-			
-			
-          </div><!-- /.row -->
-	  
-            
-          </section><!-- /.content -->
-        </div><!-- /.container -->
-      </div><!-- /.content-wrapper -->
-      <?php include('../dist/includes/footer.php');?>
-    </div><!-- ./wrapper -->
-	
- </div>
- 
-<script>
-$(".uncheck").click(function () {
-			$('input:checkbox').removeAttr('checked');
-});
-</script>
-	
-	<script type="text/javascript" src="autosum.js"></script>
-    <!-- jQuery 2.1.4 -->
-    <script src="../plugins/jQuery/jQuery-2.1.4.min.js"></script>
-	<script src="../dist/js/jquery.min.js"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-    <script src="../plugins/select2/select2.full.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="../plugins/fastclick/fastclick.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../dist/js/app.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../dist/js/demo.js"></script>
-    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+  //semestre	
+  $query_class=mysqli_query($con,"select *,COUNT(*) as count from schedule 
+  natural join member natural join time where cys='$cys' and schedule.time_id='$daym' and schedule.sec='$grupo' and day='m' AND schedule.prog_code='$prog_code'")or die(mysqli_error($con));
+    $rowc=mysqli_fetch_array($query_class);
+    $count_c=$rowc['count'];
+    $cysc=$rowc['cys'];
+    $timec=date("h:i a",strtotime($rowc['time_start']))."-".date("h:i a",strtotime($rowc['time_end']));
+    // restriccion solo por semestre
+    $error_c="<span class='text-danger'>
+    <table width='100%'>
+      <tr>
     
-    <script>
-      $(function () {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false
-        });
-      });
-    </script>
-     <script>
-      $(function () {
-        //Initialize Select2 Elements
-        $(".select2").select2();
+        <td>Lunes</td>
+        <td>$timec</td> 
+        <td>Semestre $cysc </td>
+        <td class='text-danger'><b>No valido</b>	</td>					
+      </tr>
+    </table></span>";	
 
-        //Datemask dd/mm/yyyy
-        $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-        //Datemask2 mm/dd/yyyy
-        $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-        //Money Euro
-        $("[data-mask]").inputmask();
 
-        //Date range picker
-        $('#reservation').daterangepicker();
-        //Date range picker with time picker
-        $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-        //Date range as a button
-        $('#daterange-btn').daterangepicker(
-            {
-              ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-              },
-              startDate: moment().subtract(29, 'days'),
-              endDate: moment()
-            },
-        function (start, end) {
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        }
-        );
-
-        //iCheck for checkbox and radio inputs
-        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-          checkboxClass: 'icheckbox_minimal-blue',
-          radioClass: 'iradio_minimal-blue'
-        });
-        //Red color scheme for iCheck
-        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-          checkboxClass: 'icheckbox_minimal-red',
-          radioClass: 'iradio_minimal-red'
-        });
-        //Flat red color scheme for iCheck
-        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-          checkboxClass: 'icheckbox_flat-green',
-          radioClass: 'iradio_flat-green'
-        });
-
-        //Colorpicker
-        $(".my-colorpicker1").colorpicker();
-        //color picker with addon
-        $(".my-colorpicker2").colorpicker();
-
-        //Timepicker
-        $(".timepicker").timepicker({
-          showInputs: false
-        });
-      });
-    </script>
-  </body>
-</html>
+         //solo por grupo
+    $query_grupo=mysqli_query($con,"select *,COUNT(*) as count from schedule 
+    natural join member natural join time where sec='$grupo' and schedule.time_id='$daym' and day='m' AND prog_code = '$prog_code'")or die(mysqli_error($con));
+  
+  // select *,COUNT(*) as count from schedule 
+  // 		natural join member natural join time where sec='$grupo' and schedule.time_id='$daym' and day='m' AND prog_code = '$prog_code'
+  $rowg=mysqli_fetch_array($query_grupo);
+    $count_g=$rowg['count'];
+    $gruposeg=$rowg['sec'];
+    $prog_codeg=$rowg['prog_code'];
+    $timeg=date("h:i a",strtotime($rowg['time_start']))."-".date("h:i a",strtotime($rowg['time_end']));
+    $error_g="<span class='text-danger'>
+    <table width='100%'>
+      <tr>
+        <td>Lunes</td>
+        <td>$timeg</td> 
+        <td>grupo $gruposeg</td>
+        <td>>Existe Grupo en el Programa $prog_codeg</td>
+        <td class='text-danger'><b>No valido</b></td>					
+      </tr>
+    </table></span>";	
+  
+  
+      
+  $queryt=mysqli_query($con,"select * from member where member_id='$member'")or die(mysqli_error($con));
+      $rowt=mysqli_fetch_array($queryt);
+      $membert=$rowt['member_last'].", ".$rowt['member_first'];
+    
+  $querytime=mysqli_query($con,"select * from time where time_id='$daym'")or die(mysqli_error($con));
+      $rowt=mysqli_fetch_array($querytime);
+      $timet=date("h:i a",strtotime($rowt['time_start']))."-".date("h:i a",strtotime($rowt['time_end']));	
+  
+  
+  if (($count_t==0) and ($count_r==0) and ($count_c==0) and ($count_g==0) )
+  {
+    mysqli_query($con,"INSERT INTO schedule(time_id, day ,member_id,subject_code,cys,room,remarks,settings_id,encoded_by,alum,hteo,hprac,cr,th,sec,designation,prog_code) 
+      VALUES('$daym','m','$member','$subject','$cys','$room','$remarks','$set_id','$program','$alum','$hteo','$hprac','$cr',$th,'$grupo','$designation','$prog_code')")or die(mysqli_error());
+      
+    echo "<span class='text-success'>
+    <table width='100%'>
+      <tr>
+        <td>Lunes</td>
+        <td>$timet</td> 
+        <td>Agregado exitoso</td>					
+      </tr>
+    </table></span><br>";	
+  }
+        
+  else if ($count_t>0) echo $error_t."<br>";
+  else if ($count_r>0) echo $error_r."<br>";
+  else {echo $error_c."<br>";}	
+  
+  //echo "</table>";
+}
+//------------------------------------------------
+?>

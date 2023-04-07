@@ -11,12 +11,10 @@ include('../dist/includes/dbcon.php');
 	$first = $_POST['first'];	
 	$rank = $_POST['rank'];	
 	$dept = $_POST['dept'];	
-	$designation = $_POST['designation'];	
-	$username =preg_replace('/\s+/','',$first).$dept;	
-	$username=strtolower($username);
-	$password = preg_replace('/\s+/','',$last);	
-	$password=strtolower($password);	
-	$status = $_POST['status'];	
+	// $designation = $_POST['designation'];	
+	$prog=$_SESSION['id'];
+
+
 					
 		$query=mysqli_query($con,"select * from member where member_last='$last' and  member_first='$first'")or die(mysqli_error());
 				$count=mysqli_num_rows($query);
@@ -26,8 +24,8 @@ include('../dist/includes/dbcon.php');
 					echo "<script>document.location='teacher.php'</script>";  
 				}	
 				else{
-					mysqli_query($con,"INSERT INTO member(member_salut,member_last,member_first,member_rank,dept_code,designation_id,username,password,status) 
-					VALUES('$salut','$last','$first','$rank','$dept','$designation','$username','$password','$status')")or die(mysqli_error());
+					mysqli_query($con,"INSERT INTO member(member_salut,member_last,member_first,member_rank,dept_name,designation_id,prog_code) 
+					VALUES('$salut','$last','$first','$rank','$dept','$designation','$prog')")or die(mysqli_error());
 				
 					echo "<script type='text/javascript'>
 				alert('Miembro nuevo con éxito agregado');</script>";	
@@ -35,4 +33,4 @@ include('../dist/includes/dbcon.php');
 				}
 				  
 	
-?>
+?>	
